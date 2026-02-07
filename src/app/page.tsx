@@ -178,56 +178,60 @@ function ProjectCard({ project }: { project: Project }) {
 export default function Home() {
   return (
     <div className="flex flex-col p-6 w-full items-center gap-12 font-[family-name:var(--font-geist-sans)]">
-      {/* Hero + Experience Grid */}
-      <div className="grid grid-cols-1 gap-12 lg:gap-6 pb-8 w-full lg:grid-cols-2 max-w-[1800px]" style={{ paddingTop: '26vh' }}>
-        {/* Hero */}
-        <div className="flex flex-col w-full gap-4 animate-fade-in">
-          <h1 className="font-serif text-foreground max-w-[700px]" style={{ fontSize: 'clamp(44px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
-            I&apos;m Rachel, a product designer who{" "}
-            <span className="italic">engineers</span>.
-          </h1>
-        </div>
+      <div className="flex flex-col w-full max-w-[1800px]">
+        <div className="w-full">
+          {/* Hero + Experience Grid */}
+          <div className="grid grid-cols-1 gap-12 lg:gap-6 pt-8 lg:pt-[26vh] pb-8 w-full lg:grid-cols-2">
+            {/* Hero */}
+            <div className="flex flex-col w-full gap-4">
+              <h1 className="font-serif text-foreground max-w-[700px]" style={{ fontSize: 'clamp(44px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
+                I&apos;m Rachel, a product designer who{" "}
+                <span className="italic">engineers</span>.
+              </h1>
+            </div>
 
-        {/* Experience */}
-        <div className="flex flex-col gap-2 lg:gap-[2px] lg:justify-end animate-fade-in delay-100">
-          <div className="experience-list flex flex-col gap-2 lg:gap-[2px]">
-            {experiences.map((exp, i) => (
-              <div key={i} className="experience-row flex gap-2">
-                <h4 className="w-26 min-w-26 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light">
-                  {exp.year}
-                </h4>
-                <div className="flex flex-col lg:flex-row gap-0.5">
-                  <div className="w-56 min-w-56">
-                    <a
-                      href={exp.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[15px] font-normal font-[family-name:var(--font-geist-sans)] text-foreground hover:underline underline-offset-4"
-                    >
-                      {exp.company}
-                    </a>
+            {/* Experience */}
+            <div className="flex flex-col gap-3 w-full justify-end">
+              <div className="experience-list flex flex-col gap-2 lg:gap-[2px]">
+                {experiences.map((exp, i) => (
+                  <div key={i} className="experience-row flex gap-2">
+                    <h4 className="w-26 min-w-26 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light">
+                      {exp.year}
+                    </h4>
+                    <div className="flex flex-col lg:flex-row gap-0.5">
+                      <div className="w-56 min-w-56">
+                        <a
+                          href={exp.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[15px] font-normal font-[family-name:var(--font-geist-sans)] text-foreground hover:underline underline-offset-4"
+                        >
+                          {exp.company}
+                        </a>
+                      </div>
+                      <p className="text-[15px] text-foreground-light">
+                        {exp.role}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[15px] text-foreground-light">
-                    {exp.role}
-                  </p>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out lg:grid-cols-2 w-full max-w-[1800px] animate-fade-in delay-200">
-        <div className="flex flex-col gap-6">
-          {projectsLeft.map((project, i) => (
-            <ProjectCard key={i} project={project} />
-          ))}
-        </div>
-        <div className="flex flex-col gap-6">
-          {projectsRight.map((project, i) => (
-            <ProjectCard key={i} project={project} />
-          ))}
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out lg:grid-cols-2">
+            <div className="flex flex-col gap-6">
+              {projectsLeft.map((project, i) => (
+                <ProjectCard key={i} project={project} />
+              ))}
+            </div>
+            <div className="flex flex-col gap-6">
+              {projectsRight.map((project, i) => (
+                <ProjectCard key={i} project={project} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
