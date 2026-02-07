@@ -27,6 +27,7 @@ export default function CustomCursor() {
     el.style.marginLeft = `${-size / 2}px`;
     el.style.marginTop = `${-size / 2}px`;
     el.style.opacity = visibleRef.current ? "1" : "0";
+    el.style.backgroundColor = hoveringRef.current ? "#e65f2e" : "#32404f";
   }, []);
 
   useEffect(() => {

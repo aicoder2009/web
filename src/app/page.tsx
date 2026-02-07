@@ -195,7 +195,7 @@ export default function Home() {
               <div className="experience-list flex flex-col gap-2 lg:gap-[2px]">
                 {experiences.map((exp, i) => (
                   <div key={i} className="experience-row flex gap-2">
-                    <h4 className="w-26 min-w-26 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light">
+                    <h4 className="w-26 min-w-26 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light uppercase">
                       {exp.year}
                     </h4>
                     <div className="flex flex-col lg:flex-row gap-0.5">
@@ -204,7 +204,7 @@ export default function Home() {
                           href={exp.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[15px] font-normal font-[family-name:var(--font-geist-sans)] text-foreground hover:underline underline-offset-4"
+                          className="text-[15px] font-normal text-foreground hover:text-accent hover:underline underline-offset-4 transition-colors duration-200"
                         >
                           {exp.company}
                         </a>

@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <header className="flex justify-center px-6 py-5 z-50 bg-background border-b border-foreground/10 lg:h-16 items-center relative min-h-[32px]">
       <div className="max-w-[1800px] w-full flex items-center gap-6 relative">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex flex-col sm:flex-row sm:inline-flex sm:gap-4 gap-0 w-full">
           <h4 className="text-[15px] font-medium font-[family-name:var(--font-geist-mono)] uppercase text-foreground tracking-normal">
             Rachel Chen
           </h4>
@@ -24,7 +24,7 @@ export default function Navbar() {
           </h4>
         </Link>
 
-        <div className="flex items-center gap-6 ml-auto">
+        <div className="md:flex hidden gap-8 w-full justify-end items-center">
           <nav className="flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
@@ -61,11 +61,11 @@ export default function Navbar() {
             <svg
               width="16"
               height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-accent sparkle-spin"
+              viewBox="0 0 30 30"
+              fill="none"
+              className="sparkle-spin"
             >
-              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+              <path d="M14.5231 29.2759C12.6685 22.5706 7.42938 17.3315 0.724097 15.4769C0.240255 15.3431 0.240255 14.657 0.724097 14.5231C7.42938 12.6685 12.6685 7.42939 14.5231 0.724099C14.6569 0.240257 15.343 0.240257 15.4769 0.724099C17.3315 7.42939 22.5706 12.6685 29.2759 14.5231C29.7597 14.657 29.7597 15.343 29.2759 15.4769C22.5706 17.3315 17.3315 22.5706 15.4769 29.2759C15.343 29.7597 14.657 29.7597 14.5231 29.2759Z" fill="currentColor" className="group-hover:fill-primary transition-colors duration-200" />
             </svg>
             <span className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal">
               RacheLLM
