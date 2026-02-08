@@ -132,28 +132,32 @@ function FunCard({ project }: { project: FunProject }) {
       className="project-card group block transition-all duration-300 ease-in-out !opacity-100"
     >
       <div className="flex flex-col gap-2">
-        <div className="relative w-full overflow-hidden aspect-[4/3] rounded-md transition-transform duration-300 ease-in-out group-hover:scale-[1.02]">
-          {showImage ? (
-            <Image
-              src={project.imageSrc!}
-              alt={project.name}
-              fill
-              className="object-cover transition-opacity duration-300"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <div
-              className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center relative`}
-            >
-              <span className="text-2xl md:text-3xl font-light text-foreground/15 font-serif transition-all duration-300 group-hover:text-foreground/30">
-                {project.name}
-              </span>
-            </div>
-          )}
+        <div className="relative w-full border border-foreground/10 overflow-hidden transition-all duration-300 ease-in-out">
+          <div className="relative w-full">
+            {showImage ? (
+              <Image
+                src={project.imageSrc!}
+                alt={project.name}
+                width={600}
+                height={600}
+                className="object-cover w-full h-auto transition-opacity duration-300"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div
+                className={`w-full aspect-[3/4] bg-gradient-to-br ${project.gradient} flex items-center justify-center relative`}
+              >
+                <span className="text-2xl md:text-3xl font-light text-foreground/15 font-serif transition-all duration-300 group-hover:text-foreground/30">
+                  {project.name}
+                </span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-background/0 transition-colors duration-300 ease-in-out group-hover:bg-background/40" />
+          </div>
         </div>
         <div className="flex flex-col gap-0.5 mt-1">
-          <h3 className="text-[21px] font-normal font-serif text-foreground">
+          <h3 className="text-[17px] font-normal font-serif text-foreground leading-[1.5]">
             {project.title}
           </h3>
           <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light uppercase">
@@ -167,36 +171,40 @@ function FunCard({ project }: { project: FunProject }) {
 
 export default function FunPage() {
   return (
-    <div className="flex flex-col p-6 w-full items-center font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col p-6 w-full items-center gap-12 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col w-full max-w-[1800px] gap-4">
         {/* Hero */}
         <div className="flex flex-col gap-8 py-8 animate-fade-in">
-          <h1 className="font-serif text-foreground lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: 'clamp(44px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
+          <h1 className="font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: 'clamp(44px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
             I lose sleep to hackathons, design sprints, &amp; silly little side
             quests.
           </h1>
-          <p className="text-[15px] text-foreground-light leading-relaxed max-w-2xl animate-fade-in delay-100">
-            Design is my passion, but I make time to code cool things and
-            artificialize intelligence. Currently leading design at{" "}
-            <a
-              href="https://hackwestern.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:underline underline-offset-4"
-            >
-              Hack Western
-            </a>
-            , growing at{" "}
-            <a
-              href="https://svsd.school"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:underline underline-offset-4"
-            >
-              SVSD
-            </a>
-            , and climbing rocks.
-          </p>
+          <div className="flex flex-col md:flex-row gap-12 lg:w-2/5 lg:min-w-[640px] animate-fade-in delay-100">
+            <div className="flex flex-col gap-2">
+              <p className="text-[15px] text-foreground-light leading-[1.5]">
+                Design is my passion, but I make time to code cool things and
+                artificialize intelligence. Currently leading design at{" "}
+                <a
+                  href="https://hackwestern.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  Hack Western
+                </a>
+                , growing at{" "}
+                <a
+                  href="https://svsd.school"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  SVSD
+                </a>
+                , and climbing rocks.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* 3-Column Project Grid */}

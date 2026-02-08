@@ -136,7 +136,7 @@ function ProjectCard({ project }: { project: Project }) {
       className="project-card group block transition-all duration-300 ease-in-out !opacity-100"
     >
       <div className="flex flex-col gap-2">
-        <div className="relative w-full overflow-hidden aspect-[16/9] rounded-md">
+        <div className="relative w-full aspect-[16/9] border border-foreground/10 overflow-hidden transition-all duration-300 ease-in-out" style={{ boxSizing: 'border-box' }}>
           {/* Gradient fallback behind media */}
           <div
             className={`absolute inset-0 bg-gradient-to-br ${project.fallbackGradient}`}
@@ -162,8 +162,8 @@ function ProjectCard({ project }: { project: Project }) {
           {/* Hover wash overlay */}
           <div className="absolute inset-0 bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-background/40" />
         </div>
-        <div className="flex flex-col justify-between gap-0.5 mt-1 lg:flex-row">
-          <h3 className="text-[21px] font-normal font-serif text-foreground overflow-hidden">
+        <div className="flex flex-col justify-between gap-0.5 mt-1 transition-colors duration-300 ease-in-out lg:flex-row">
+          <h3 className="text-[17px] font-normal font-serif text-foreground overflow-hidden">
             {project.title}
           </h3>
           <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light uppercase">

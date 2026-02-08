@@ -20,14 +20,13 @@ export default function CustomCursor() {
   const updateCursor = useCallback(() => {
     const el = cursorRef.current;
     if (!el) return;
-    const size = hoveringRef.current ? 28 : 8;
+    const size = hoveringRef.current ? 28 : 16;
     el.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px)`;
     el.style.width = `${size}px`;
     el.style.height = `${size}px`;
     el.style.marginLeft = `${-size / 2}px`;
     el.style.marginTop = `${-size / 2}px`;
-    el.style.opacity = visibleRef.current ? "1" : "0";
-    el.style.backgroundColor = hoveringRef.current ? "#e65f2e" : "#32404f";
+    el.style.opacity = visibleRef.current ? (hoveringRef.current ? "0.6" : "1") : "0";
   }, []);
 
   useEffect(() => {
@@ -87,17 +86,17 @@ export default function CustomCursor() {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "8px",
-        height: "8px",
-        marginLeft: "-4px",
-        marginTop: "-4px",
-        backgroundColor: "#32404f",
-        borderRadius: "50%",
+        width: "16px",
+        height: "16px",
+        marginLeft: "-8px",
+        marginTop: "-8px",
+        backgroundColor: "#e65f2e",
+        borderRadius: "999px",
         pointerEvents: "none",
         zIndex: 9999,
         opacity: 0,
         transition:
-          "width 0.3s ease-out, height 0.3s ease-out, margin 0.3s ease-out, opacity 0.3s ease-out",
+          "width 0.2s ease-out, height 0.2s ease-out, margin 0.2s ease-out, opacity 0.2s ease-out",
         willChange: "transform",
         transform: "translate(-100px, -100px)",
       }}

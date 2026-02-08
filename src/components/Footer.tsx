@@ -33,7 +33,7 @@ export default function Footer() {
     <footer className="w-full flex items-center justify-center px-6 py-5 border-t border-foreground/10">
       <div className="flex flex-col md:flex-row w-full items-start md:items-center justify-between gap-6 max-w-[1800px] mx-auto">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground">
+          <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light">
             Designed + Coded with
           </h4>
           <button
@@ -57,7 +57,7 @@ export default function Footer() {
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
           </button>
-          <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground">
+          <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light">
             by Rachel
           </h4>
         </div>
