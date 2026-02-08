@@ -3,40 +3,22 @@ import RotatingText from "@/components/RotatingText";
 
 const experiences = [
   {
-    year: "2024–NOW",
-    company: "Aigenie Enterprises",
-    role: "Founder & CEO",
+    year: "2022–NOW",
+    company: "AI Edtech Stealth Startup",
+    role: "Founder & Chief Executive Officer",
     url: "https://aigenie.biz",
   },
   {
-    year: "2024",
-    company: "AWS",
-    role: "AI Practitioner Certification",
-    url: "https://aws.amazon.com/certification/",
-  },
-  {
-    year: "2023",
-    company: "UN GYEL",
-    role: "Global Youth Empowerment Leaders Program",
-    url: undefined,
-  },
-  {
-    year: "2021",
-    company: "KidCon",
-    role: "Organizer, Cloud Computing Conference for Young People",
+    year: "2020–2021",
+    company: "Kids Cloud Club",
+    role: "Chief Executive Officer",
     url: undefined,
   },
   {
     year: "2019",
-    company: "AWS Public Sector Summit",
-    role: "Keynote Speaker, Washington DC (40,000 attendees)",
-    url: undefined,
-  },
-  {
-    year: "2018",
-    company: "AWS",
-    role: "Cloud Practitioner Certified (youngest ever, age 9)",
-    url: "https://aws.amazon.com/certification/",
+    company: "Amazon Web Services (AWS)",
+    role: "Summer Intern",
+    url: "https://aws.amazon.com",
   },
 ];
 
@@ -221,24 +203,22 @@ export default function Home() {
             <div className="flex flex-col gap-3 w-full justify-end">
               <div className="experience-list flex flex-col gap-2 lg:gap-[2px]">
                 {experiences.map((exp, i) => (
-                  <div key={i} className="experience-row flex gap-2">
-                    <h4 className="w-26 min-w-26 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light uppercase">
+                  <div key={i} className="experience-row flex items-baseline gap-2">
+                    <h4 className="w-28 min-w-28 text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light">
                       {exp.year}
                     </h4>
-                    <div className="flex flex-col lg:flex-row gap-0.5">
-                      <div className="w-56 min-w-56 text-[15px]">
-                        {exp.url ? (
-                          <a href={exp.url} target="_blank" rel="noopener noreferrer">
-                            {exp.company}
-                          </a>
-                        ) : (
-                          <span>{exp.company}</span>
-                        )}
-                      </div>
-                      <p className="text-[15px] text-foreground-light">
-                        {exp.role}
-                      </p>
+                    <div className="w-56 min-w-56 text-[15px] font-medium text-foreground">
+                      {exp.url ? (
+                        <a href={exp.url} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                          {exp.company}
+                        </a>
+                      ) : (
+                        <span>{exp.company}</span>
+                      )}
                     </div>
+                    <p className="text-[15px] text-foreground-light">
+                      {exp.role}
+                    </p>
                   </div>
                 ))}
               </div>

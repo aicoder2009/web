@@ -85,19 +85,7 @@ body * {
   width: 100%;
 }
 
-/* Experience list hover effect */
-.experience-list:hover .experience-row {
-  opacity: 0.4;
-  transition: opacity 0.2s ease;
-}
-
-.experience-list:hover .experience-row:hover {
-  opacity: 1;
-}
-
-.experience-row {
-  transition: opacity 0.2s ease;
-}
+/* Experience rows — no dimming on hover */
 
 /* Project card hover */
 .project-card {
