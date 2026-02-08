@@ -14,6 +14,7 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   quotedText?: string;
+  feedback?: "up" | "down" | null;
 }
 
 // MUI SubdirectoryArrowRight icon — matches source
@@ -115,6 +116,14 @@ export default function ChatSidebar() {
       abortRef.current = controller;
 
       try {
+        // Collect feedback from the most recent assistant message
+        const lastAssistant = [...messages].reverse().find(
+          (m) => m.role === "assistant" && m.feedback
+        );
+        const pendingFeedback = lastAssistant?.feedback
+          ? { type: lastAssistant.feedback, message: lastAssistant.content.slice(0, 200) }
+          : undefined;
+
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -123,6 +132,7 @@ export default function ChatSidebar() {
             responseId,
             pageContext: { page: pageContext },
             context: quotedText || undefined,
+            feedback: pendingFeedback,
           }),
           signal: controller.signal,
         });
@@ -239,6 +249,17 @@ export default function ChatSidebar() {
     [sendMessage]
   );
 
+  const handleMessageFeedback = useCallback(
+    (index: number, type: "up" | "down" | null) => {
+      setMessages((prev) => {
+        const updated = [...prev];
+        updated[index] = { ...updated[index], feedback: type };
+        return updated;
+      });
+    },
+    []
+  );
+
   const hasMessages = messages.length > 0;
 
   // Follow-up suggestions for the last assistant message (keyword-based)
@@ -299,6 +320,7 @@ export default function ChatSidebar() {
               onSubmit={handleSubmit}
               onKeyDown={handleKeyDown}
               onSuggestionClick={handleSuggestionClick}
+              onMessageFeedback={handleMessageFeedback}
               onReset={reset}
               onClose={() => setIsChatOpen(false)}
             />
@@ -333,6 +355,7 @@ export default function ChatSidebar() {
               onSubmit={handleSubmit}
               onKeyDown={handleKeyDown}
               onSuggestionClick={handleSuggestionClick}
+              onMessageFeedback={handleMessageFeedback}
               onReset={reset}
               onClose={() => setIsChatOpen(false)}
               mobile
@@ -363,6 +386,7 @@ function SidebarContent({
   onSubmit,
   onKeyDown,
   onSuggestionClick,
+  onMessageFeedback,
   onReset,
   onClose,
   mobile,
@@ -385,6 +409,7 @@ function SidebarContent({
   onSubmit: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
   onSuggestionClick: (s: string) => void;
+  onMessageFeedback: (index: number, type: "up" | "down" | null) => void;
   onReset: () => void;
   onClose: () => void;
   mobile?: boolean;
@@ -520,6 +545,7 @@ function SidebarContent({
                     : undefined
                 }
                 onSuggestionClick={onSuggestionClick}
+                onFeedback={msg.role === "assistant" ? (type) => onMessageFeedback(i, type) : undefined}
               />
             ))}
 

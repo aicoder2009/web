@@ -13,6 +13,7 @@ interface ChatMessageProps {
   quotedText?: string;
   suggestions?: string[];
   onSuggestionClick?: (suggestion: string) => void;
+  onFeedback?: (type: "up" | "down" | null) => void;
   isStreaming?: boolean;
 }
 
@@ -78,6 +79,7 @@ export default function ChatMessage({
   quotedText,
   suggestions,
   onSuggestionClick,
+  onFeedback,
   isStreaming,
 }: ChatMessageProps) {
   if (role === "user") {
@@ -91,6 +93,12 @@ export default function ChatMessage({
     await navigator.clipboard.writeText(content);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleFeedback = (type: "up" | "down") => {
+    const newValue = feedback === type ? null : type;
+    setFeedback(newValue);
+    onFeedback?.(newValue);
   };
 
   return (
@@ -110,22 +118,22 @@ export default function ChatMessage({
               {copied ? <Check size={13} className="text-accent" /> : <Copy size={13} />}
             </button>
             <button
-              onClick={() => setFeedback(feedback === "up" ? null : "up")}
+              onClick={() => handleFeedback("up")}
               className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors ${
                 feedback === "up" ? "text-accent" : "text-foreground/40 hover:text-foreground/70"
               }`}
               aria-label="Helpful"
             >
-              <ThumbsUp size={13} />
+              <ThumbsUp size={13} fill={feedback === "up" ? "currentColor" : "none"} />
             </button>
             <button
-              onClick={() => setFeedback(feedback === "down" ? null : "down")}
+              onClick={() => handleFeedback("down")}
               className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors ${
                 feedback === "down" ? "text-red-400" : "text-foreground/40 hover:text-foreground/70"
               }`}
               aria-label="Not helpful"
             >
-              <ThumbsDown size={13} />
+              <ThumbsDown size={13} fill={feedback === "down" ? "currentColor" : "none"} />
             </button>
           </div>
         )}

@@ -4,7 +4,7 @@ import RotatingText from "@/components/RotatingText";
 const experiences = [
   {
     year: "2022–NOW",
-    company: "AI Edtech Stealth Startup",
+    company: "Aigenie Enterprises LLC.",
     role: "Founder & Chief Executive Officer",
     url: "https://aigenie.biz",
   },

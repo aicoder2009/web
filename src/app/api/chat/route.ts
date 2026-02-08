@@ -133,6 +133,7 @@ export async function POST(req: Request) {
       responseId: previousResponseId,
       pageContext,
       context,
+      feedback,
     } = body;
 
     if (!message) {
@@ -196,6 +197,17 @@ export async function POST(req: Request) {
       parts.push(
         `The user has selected the following text from the page: "${context}"`
       );
+    }
+    if (feedback && typeof feedback === "object" && feedback.type) {
+      if (feedback.type === "down") {
+        parts.push(
+          `The user indicated your previous response was NOT helpful. Try a different approach, be more specific, or ask for clarification.`
+        );
+      } else if (feedback.type === "up") {
+        parts.push(
+          `The user found your previous response helpful. Continue in the same style and depth.`
+        );
+      }
     }
     const contextSuffix =
       parts.length > 0 ? "\n\n" + parts.join("\n") : "";
