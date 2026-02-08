@@ -10,118 +10,73 @@ interface FunProject {
   gradient: string;
   imageSrc?: string;
   videoSrc?: string;
+  inProgress?: boolean;
 }
 
 const col1: FunProject[] = [
   {
-    title: "AI device to never forget people",
-    name: "infu",
-    tag: "2nd place @ Hack Western 10",
-    href: "https://devpost.com/software/infu",
-    gradient: "from-slate-300 via-gray-200 to-zinc-300",
-    videoSrc: "/fun/infu.mp4",
+    title: "Digital Alfa Zeta flip display for any screen",
+    name: "DotClock",
+    tag: "TypeScript",
+    href: "https://github.com/aicoder2009/dotclock",
+    gradient: "from-amber-200 via-yellow-200 to-amber-300",
   },
   {
-    title: "Cursor for document editing",
-    name: "AI doc editor",
-    tag: "Concept",
-    href: "https://x.com/racheljychen/status/1941619198309896654",
-    gradient: "from-violet-200 via-fuchsia-200 to-purple-300",
-    videoSrc: "/fun/cursordocediting.mp4",
+    title: "Open source ad-free citation machine",
+    name: "OpenCitation",
+    tag: "TypeScript",
+    href: "https://github.com/aicoder2009/opencitation",
+    gradient: "from-sky-200 via-blue-200 to-indigo-200",
   },
   {
-    title: "App for spontaneous hangouts",
-    name: "bubbl",
-    tag: "1st place @ UXL designathon 2024",
-    href: "https://drive.google.com/file/d/1AK_tyewVfWShq_pyKfeYv-6P3nHvEd1E/view",
-    gradient: "from-pink-200 via-rose-200 to-pink-300",
-    imageSrc: "/fun/bubbl.png",
-  },
-  {
-    title: "AI Chrome extension mental health",
-    name: "Zensphere",
-    tag: "Best Health Hack @ Methacks 2024",
-    href: "https://devpost.com/software/zensphere",
-    gradient: "from-cyan-200 via-teal-200 to-emerald-200",
-    imageSrc: "/fun/zensphere.png",
+    title: "AWS account pause tool — stops all services without nuking",
+    name: "awsbreak",
+    tag: "Python",
+    href: "https://github.com/aicoder2009/awsbreak",
+    gradient: "from-orange-200 via-amber-200 to-orange-300",
   },
 ];
 
 const col2: FunProject[] = [
   {
-    title: "Making hacking for everyone",
-    name: "Hack Western 12",
-    tag: "Hackathon",
-    href: "https://hackwestern.com/",
-    gradient: "from-blue-200 via-indigo-200 to-blue-300",
-    videoSrc: "/fun/hw.mp4",
-  },
-  {
-    title: "Sign language translator",
-    name: "ASL Translator",
-    tag: "Personal Project",
-    href: "https://github.com/rachelchxn/asl-translator-deployed",
-    gradient: "from-amber-200 via-yellow-200 to-amber-300",
-    imageSrc: "/fun/asl-translator.png",
-  },
-  {
-    title: "AI trail generator app",
-    name: "trailo",
-    tag: "Design Project",
-    href: "https://x.com/racheljychen/status/1945714684721533250",
+    title: "Language identification word game with 20+ languages",
+    name: "Linguarush",
+    tag: "TypeScript · 4 Game Modes",
+    href: "https://github.com/aicoder2009/Linguarush",
     gradient: "from-green-200 via-emerald-200 to-green-300",
-    videoSrc: "/fun/trailo.mp4",
   },
   {
-    title: "Youtube video to organized notes",
-    name: "TL;DW",
-    tag: "Best Cohere Hack @ UofTHacks X",
-    href: "https://devpost.com/software/tldw-too-long-didn-t-watch",
-    gradient: "from-orange-200 via-amber-200 to-orange-300",
-    imageSrc: "/fun/tldw.png",
+    title: "AI snake identification PWA with OpenAI Vision + AWS Lambda",
+    name: "SnakeID",
+    tag: "TypeScript · Oct 2025",
+    href: "https://github.com/aicoder2009/SnakeID",
+    gradient: "from-rose-200 via-pink-200 to-rose-300",
   },
   {
-    title: "Machine learning and data analysis for hotels",
-    name: "dataquest",
-    tag: "1st place @ Dataquest 2024",
-    href: "https://devpost.com/software/the-best-solution",
-    gradient: "from-sky-200 via-blue-200 to-indigo-200",
-    imageSrc: "/fun/dataquest.png",
+    title: "Intelligent macOS storage optimizer with ML",
+    name: "Jerry",
+    tag: "In Progress",
+    href: "https://github.com/aicoder2009/Jerry",
+    gradient: "from-violet-200 via-fuchsia-200 to-purple-300",
+    inProgress: true,
   },
 ];
 
 const col3: FunProject[] = [
   {
-    title: "Eye-tracking device for eye health",
-    name: "Visionary",
-    tag: "Best Eye-Tracking Hack @ Hack the North 2023",
-    href: "https://devpost.com/software/visionary-bzvo5p",
-    gradient: "from-rose-200 via-pink-200 to-rose-300",
-    imageSrc: "/fun/visionary.png",
+    title: "Chat-first scheduling app for high school students",
+    name: "Pando",
+    tag: "TypeScript · In Progress",
+    href: "https://github.com/aicoder2009/Pando",
+    gradient: "from-cyan-200 via-teal-200 to-emerald-200",
+    inProgress: true,
   },
   {
-    title: "Collaborative vibe coding",
-    name: "init",
-    tag: "Hack the 6ix 2024",
-    href: "https://devpost.com/software/init-gaxp0c",
-    gradient: "from-slate-200 via-gray-200 to-slate-300",
-    videoSrc: "/fun/init.mp4",
-  },
-  {
-    title: "Real-time emotion-mapping",
-    name: "empa",
-    tag: "1st place @ Shehacks 2024",
-    href: "https://devpost.com/software/empa",
-    gradient: "from-purple-200 via-violet-200 to-purple-300",
-    imageSrc: "/fun/empa.png",
-  },
-  {
-    title: "AI chatbot of myself with stable diffusion",
-    name: "RachelAI",
-    tag: "Client Project",
-    href: "https://www.onova.io/innovation-insights/rachelai-a-behind-the-scenes-look-at-creating-a-virtual-ai-chatbot-in-24-hours#the-impact-of-rachelai",
-    gradient: "from-red-200 via-orange-200 to-amber-200",
-    imageSrc: "/fun/rachelai.png",
+    title: "Podcast about AI — conversations, trends, and the future",
+    name: "The AI Tripod Podcast",
+    tag: "Ongoing",
+    href: "#",
+    gradient: "from-slate-300 via-gray-200 to-zinc-300",
   },
 ];
 
@@ -170,9 +125,16 @@ function FunCard({ project }: { project: FunProject }) {
           </div>
         </div>
         <div className="flex flex-col gap-0.5 mt-1">
-          <h3 className="text-[17px] font-normal font-serif text-foreground leading-[1.5]">
-            {project.title}
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="text-[17px] font-normal font-serif text-foreground leading-[1.5]">
+              {project.title}
+            </h3>
+            {project.inProgress && (
+              <span className="in-progress-tag">
+                🚧 In Progress
+              </span>
+            )}
+          </div>
           <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] text-foreground-light uppercase">
             {project.name} &bull; {project.tag}
           </h4>
@@ -189,32 +151,23 @@ export default function FunPage() {
         {/* Hero */}
         <div className="flex flex-col gap-8 py-8 animate-fade-in">
           <h1 className="hero-h1 font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '52px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
-            I lose sleep to hackathons, design sprints, &amp; silly little side
-            quests.
+            I build tools that solve real problems &amp; scratch my own itches.
           </h1>
           <div className="flex flex-col md:flex-row gap-12 lg:w-2/5 lg:min-w-[640px] animate-fade-in stagger-1">
             <div className="flex flex-col gap-2">
               <p className="text-[15px] text-foreground-light leading-[1.5]">
-                Design is my passion, but I make time to code cool things and
-                artificialize intelligence. Currently leading design at{" "}
+                When I&apos;m not building{" "}
                 <a
-                  href="https://hackwestern.com"
+                  href="https://aigenie.biz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground underline underline-offset-4"
                 >
-                  Hack Western
+                  Aigenie
                 </a>
-                , growing at{" "}
-                <a
-                  href="https://svsd.school"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground underline underline-offset-4"
-                >
-                  SVSD
-                </a>
-                , and climbing rocks.
+                , I&apos;m hacking on side projects, contributing to open source,
+                and exploring AI at every layer of the stack. Currently playing
+                pickleball and podcasting.
               </p>
             </div>
           </div>

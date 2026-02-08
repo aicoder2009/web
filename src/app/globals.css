@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #fafcfd;
@@ -148,7 +149,7 @@ body * {
   transition: background-color 0.3s ease;
 }
 
-/* Sparkle spin animation for RacheLLM star icon */
+/* Sparkle spin animation for ArunLM star icon */
 @keyframes sparkleSpin {
   0% { transform: rotate(0deg) scale(1); }
   50% { transform: rotate(45deg) scale(1.2); }
@@ -253,4 +254,166 @@ main {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ======= ArunLM Chat ======= */
+
+/* Typing indicator bouncing dots */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+/* Streaming cursor — blinking caret */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursorBlink 0.8s ease-in-out infinite;
+}
+
+/* Message fade-in */
+@keyframes chatMsgFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-msg-fade-in {
+  animation: chatMsgFadeIn 0.25s ease-out forwards;
+}
+
+/* Suggestions fade-in */
+@keyframes suggestionsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.chat-suggestions-fade-in {
+  animation: suggestionsFadeIn 0.4s ease-out forwards;
+}
+
+/* Chat scrollbar — thin */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(50, 64, 79, 0.15);
+  border-radius: 2px;
+}
+
+/* Mobile body lock when chat is open */
+body.chat-open {
+  overflow: hidden;
+}
+
+/* Chat markdown rendering */
+.chat-markdown p {
+  margin-bottom: 0.5em;
+}
+
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown strong {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.chat-markdown a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.chat-markdown a:hover {
+  opacity: 0.8;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  padding-left: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.chat-markdown li {
+  margin-bottom: 0.25em;
+}
+
+.chat-markdown code {
+  background: rgba(50, 64, 79, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: var(--font-geist-mono);
+}
+
+.chat-markdown pre {
+  background: rgba(50, 64, 79, 0.06);
+  padding: 0.75em 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 0.5em;
+}
+
+.chat-markdown pre code {
+  background: none;
+  padding: 0;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3,
+.chat-markdown h4,
+.chat-markdown h5,
+.chat-markdown h6 {
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.25em;
+  margin-top: 0.5em;
+}
+
+/* In-progress tag (black + yellow construction badge) */
+.in-progress-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: #1a1a1a;
+  color: #fbbf24;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-geist-mono);
+  white-space: nowrap;
 }

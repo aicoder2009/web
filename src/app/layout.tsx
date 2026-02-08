@@ -6,20 +6,23 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import ChatProvider from "@/components/ChatProvider";
+import ChatSidebar from "@/components/ChatSidebar";
+import TextSelectionPopover from "@/components/TextSelectionPopover";
 
 export const metadata: Metadata = {
-  title: "Rachel Chen | Product Designer + Engineer",
+  title: "Karthick Arun | Builder + Engineer",
   description:
-    "I'm Rachel, a product designer who engineers.",
+    "I'm Karthick, a builder and engineer passionate about AI.",
   openGraph: {
-    title: "Rachel Chen | Product Designer + Engineer",
-    description: "I'm Rachel, a product designer who engineers.",
+    title: "Karthick Arun | Builder + Engineer",
+    description: "I'm Karthick, a builder and engineer passionate about AI.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rachel Chen | Product Designer + Engineer",
-    description: "I'm Rachel, a product designer who engineers.",
+    title: "Karthick Arun | Builder + Engineer",
+    description: "I'm Karthick, a builder and engineer passionate about AI.",
   },
 };
 
@@ -40,13 +43,19 @@ export default function RootLayout({
         className={`${GeistSans.variable} ${GeistMono.variable} font-[family-name:var(--font-geist-sans)] bg-[#fafcfd]`}
       >
         <CustomCursor />
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-1">
-            <ViewTransition>{children}</ViewTransition>
-          </main>
-          <Footer />
-        </div>
+        <ChatProvider>
+          <div className="flex h-[100dvh] overflow-hidden">
+            <div className="flex-1 flex flex-col overflow-y-auto transition-all duration-200">
+              <Navbar />
+              <main className="flex-1">
+                <ViewTransition>{children}</ViewTransition>
+              </main>
+              <Footer />
+            </div>
+            <ChatSidebar />
+          </div>
+          <TextSelectionPopover />
+        </ChatProvider>
       </body>
     </html>
   );
