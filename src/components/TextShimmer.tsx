@@ -17,9 +17,10 @@ export default function TextShimmer({
 
   return (
     <span
-      className={`bg-[length:200%_auto] bg-clip-text font-medium text-transparent animate-[shimmer_4s_infinite_linear] ${className}`}
+      className={`bg-size-[200%_auto] bg-clip-text font-medium text-transparent animate-[shimmer_4s_infinite_linear] ${className}`}
       style={{
-        backgroundImage: `linear-gradient(to right, var(--foreground-light) ${50 - dynamicSpread}%, var(--foreground) 50%, var(--foreground-light) ${50 + dynamicSpread}%)`,
+        backgroundImage: `linear-gradient(to right, rgba(50,64,79,0.35) ${50 - dynamicSpread}%, var(--foreground) 50%, rgba(50,64,79,0.35) ${50 + dynamicSpread}%)`,
+        WebkitBackgroundClip: "text",
         animationDuration: `${duration}s`,
       }}
     >

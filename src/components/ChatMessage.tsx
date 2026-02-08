@@ -3,7 +3,9 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, ChevronDown } from "lucide-react";
+
+const USER_MSG_TRUNCATE = 200; // characters before truncation kicks in
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -23,6 +25,53 @@ function SubdirectoryArrowRight({ className }: { className?: string }) {
   );
 }
 
+function UserMessage({ content, quotedText }: { content: string; quotedText?: string }) {
+  const isLong = content.length > USER_MSG_TRUNCATE;
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="flex flex-col items-end chat-msg-fade-in">
+      <div
+        className={`max-w-[320px] bg-background text-foreground px-4 py-3 border border-foreground/10 overflow-hidden ${isLong && !expanded ? "cursor-pointer" : ""}`}
+        onClick={isLong && !expanded ? () => setExpanded(true) : undefined}
+      >
+        {quotedText && (
+          <div className="mb-2 text-xs text-foreground-light border-l-2 border-accent/30 pl-2 italic break-words">
+            &ldquo;{quotedText}&rdquo;
+          </div>
+        )}
+        <div className="relative">
+          <p
+            className={`text-sm whitespace-pre-wrap break-words !text-current ${isLong && !expanded ? "line-clamp-4" : ""}`}
+          >
+            {content}
+          </p>
+          {isLong && !expanded && (
+            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+          )}
+        </div>
+        {isLong && !expanded && (
+          <button
+            onClick={(e) => { e.stopPropagation(); setExpanded(true); }}
+            className="flex items-center gap-1 mt-1 text-xs text-accent hover:text-accent/80 transition-colors"
+          >
+            <span>Show more</span>
+            <ChevronDown size={12} />
+          </button>
+        )}
+        {isLong && expanded && (
+          <button
+            onClick={() => setExpanded(false)}
+            className="flex items-center gap-1 mt-1 text-xs text-foreground/40 hover:text-foreground/60 transition-colors"
+          >
+            <span>Show less</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function ChatMessage({
   role,
   content,
@@ -32,18 +81,7 @@ export default function ChatMessage({
   isStreaming,
 }: ChatMessageProps) {
   if (role === "user") {
-    return (
-      <div className="flex flex-col items-end chat-msg-fade-in">
-        <div className="max-w-[320px] bg-background text-foreground px-4 py-3 border border-foreground/10">
-          {quotedText && (
-            <div className="mb-2 text-xs text-foreground-light border-l-2 border-accent/30 pl-2 italic">
-              &ldquo;{quotedText}&rdquo;
-            </div>
-          )}
-          <p className="text-sm whitespace-pre-wrap !text-current">{content}</p>
-        </div>
-      </div>
-    );
+    return <UserMessage content={content} quotedText={quotedText} />;
   }
 
   const [copied, setCopied] = useState(false);
@@ -56,8 +94,8 @@ export default function ChatMessage({
 
   return (
     <div className="flex flex-col items-start chat-msg-fade-in group/msg">
-      <div className="max-w-[320px] text-foreground">
-        <div className="text-sm py-4 prose prose-sm max-w-none prose-p:my-2 prose-p:leading-relaxed prose-strong:text-current prose-em:text-current prose-code:text-current prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-ul:my-2 prose-li:my-1 text-current">
+      <div className="max-w-[320px] text-foreground overflow-hidden">
+        <div className="text-sm py-4 prose prose-sm max-w-none break-words prose-p:my-2 prose-p:leading-relaxed prose-strong:text-current prose-em:text-current prose-code:text-current prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-ul:my-2 prose-li:my-1 text-current">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
           {isStreaming && <span className="streaming-cursor" />}
         </div>
