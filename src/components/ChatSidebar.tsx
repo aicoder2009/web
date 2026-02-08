@@ -421,22 +421,22 @@ function SidebarContent({
 
       {/* Messages area */}
       <div ref={scrollRef} className="flex flex-col overflow-y-auto p-4 gap-4 h-full chat-scrollbar">
-        <div className="space-y-4">
-          {/* Welcome state */}
+        <div className="flex flex-col flex-1 space-y-4">
+          {/* Welcome state — pushed to bottom like source */}
           {!hasMessages && (
-            <div className="flex flex-col justify-end flex-1 min-h-[400px] space-y-4">
-              <h3 className="text-lg font-medium !text-foreground font-serif">
+            <div className="flex flex-col justify-end flex-1 space-y-4">
+              <h3 className="text-[22px] font-medium !text-foreground font-serif">
                 {welcomeHeading}
               </h3>
-              <div className="w-full space-y-2">
-                <div className="grid gap-0.5">
+              <div className="w-full">
+                <div className="grid gap-1">
                   {suggestions.map((s, i) => (
                     <button
                       key={i}
                       onClick={() => onSuggestionClick(s)}
-                      className="text-left p-2 -mx-2 hover:bg-accent/5 transition-colors text-sm text-foreground/80 flex items-start gap-1 group hover:text-accent rounded-md"
+                      className="text-left py-2.5 -mx-2 px-2 hover:bg-accent/5 transition-colors text-[15px] text-foreground/70 flex items-start gap-1.5 group hover:text-accent rounded-md"
                     >
-                      <SubdirectoryArrowRight className="text-foreground/80 mt-[0.25px] shrink-0 group-hover:text-accent" />
+                      <SubdirectoryArrowRight className="text-foreground/70 mt-[1px] shrink-0 group-hover:text-accent" />
                       <span>{s}</span>
                     </button>
                   ))}
