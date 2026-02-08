@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RotatingText from "@/components/RotatingText";
 
 const experiences = [
   {
@@ -212,7 +213,7 @@ export default function Home() {
             <div className="flex flex-col w-full gap-4">
               <h1 className="hero-h1 font-serif text-foreground max-w-[700px]" style={{ fontSize: '52px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
                 I&apos;m Karthick, an entrepreneur who{" "}
-                <span className="italic">engineers</span>.
+                <RotatingText />
               </h1>
             </div>
 

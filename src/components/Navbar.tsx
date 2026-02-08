@@ -35,7 +35,7 @@ export default function Navbar() {
               Karthick Arun
             </h4>
             <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light tracking-normal flex items-center gap-0">
-              Builder + Engineer
+              Entrepreneur + Engineer
             </h4>
           </Link>
         </div>

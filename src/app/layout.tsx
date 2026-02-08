@@ -11,18 +11,18 @@ import ChatSidebar from "@/components/ChatSidebar";
 import TextSelectionPopover from "@/components/TextSelectionPopover";
 
 export const metadata: Metadata = {
-  title: "Karthick Arun | Builder + Engineer",
+  title: "Karthick Arun | Entrepreneur + Engineer",
   description:
-    "I'm Karthick, a builder and engineer passionate about AI.",
+    "I'm Karthick — an entrepreneur who designs, ships, and markets.",
   openGraph: {
-    title: "Karthick Arun | Builder + Engineer",
-    description: "I'm Karthick, a builder and engineer passionate about AI.",
+    title: "Karthick Arun | Entrepreneur + Engineer",
+    description: "I'm Karthick — an entrepreneur who designs, ships, and markets.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karthick Arun | Builder + Engineer",
-    description: "I'm Karthick, a builder and engineer passionate about AI.",
+    title: "Karthick Arun | Entrepreneur + Engineer",
+    description: "I'm Karthick — an entrepreneur who designs, ships, and markets.",
   },
 };
 
