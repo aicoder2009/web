@@ -79,6 +79,10 @@ src/
 | `OPENAI_API_KEY` | OpenAI API key for ArunLM chatbot |
 | `OPENAI_VECTOR_STORE_ID` | Vector store ID for file search |
 
+## Credits
+
+This site is a remix of [rachelchen.tech](https://rachelchen.tech) by Rachel Chen. The original design, layout, and interaction patterns served as the foundation — all content, projects, and the ArunLM chatbot are my own.
+
 ## Author
 
 **Karthick Arun** — [GitHub](https://github.com/aicoder2009) / [LinkedIn](https://linkedin.com/in/karthickarun) / [Bluesky](https://bsky.app/profile/aicoder2009.bsky.social)
