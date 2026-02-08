@@ -53,42 +53,6 @@ const projectsLeft: Project[] = [
     tintColor: "rgba(233, 141, 52, 0.314)",
   },
   {
-    title: "Mobile-first for Figma",
-    org: "Figma",
-    status: "Concept 2025",
-    href: "/projects/figma",
-    mediaType: "video",
-    videoSrc: "/projects/figma/figma.mp4",
-    posterSrc: "/projects/figma/figma.png",
-    fallbackGradient: "from-violet-100 via-purple-100 to-pink-100",
-    tintColor: "rgba(162, 89, 255, 0.314)",
-  },
-  {
-    title: "The world's first AI poker coach",
-    org: "PokerGPT",
-    status: "Shipped 2023",
-    href: "/projects/pokergpt",
-    mediaType: "video",
-    videoSrc: "/projects/pokergpt/pokergpt.mp4",
-    posterSrc: "/projects/pokergpt/pokergpt.png",
-    fallbackGradient: "from-green-100 via-emerald-100 to-teal-100",
-    tintColor: "rgba(52, 168, 83, 0.314)",
-  },
-  {
-    title: "Making 0-1 building for everyone",
-    org: "Hack Western 12",
-    status: "Shipped 2025",
-    href: "https://hackwestern.com",
-    external: true,
-    mediaType: "image",
-    posterSrc: "/hackwestern.png",
-    fallbackGradient: "from-blue-100 via-indigo-100 to-violet-100",
-    tintColor: "rgba(79, 70, 229, 0.314)",
-  },
-];
-
-const projectsRight: Project[] = [
-  {
     title: "Novel consumer AI experiences",
     org: "Amazon Alexa+",
     status: "Contract 2025",
@@ -100,6 +64,17 @@ const projectsRight: Project[] = [
     tintColor: "rgba(0, 20, 69, 0.314)",
   },
   {
+    title: "Mobile-first for Figma",
+    org: "Figma",
+    status: "Concept 2025",
+    href: "/projects/figma",
+    mediaType: "video",
+    videoSrc: "/projects/figma/figma.mp4",
+    posterSrc: "/projects/figma/figma.png",
+    fallbackGradient: "from-violet-100 via-purple-100 to-pink-100",
+    tintColor: "rgba(208, 168, 216, 0.314)",
+  },
+  {
     title: "Patent-pending AI",
     org: "Royal Bank of Canada",
     status: "Handed off 2024",
@@ -107,7 +82,21 @@ const projectsRight: Project[] = [
     mediaType: "image",
     posterSrc: "/projects/rbc/rbc.png",
     fallbackGradient: "from-yellow-100 via-amber-100 to-orange-100",
-    tintColor: "rgba(232, 242, 251, 0.6)",
+    tintColor: "rgb(232, 242, 251)",
+  },
+];
+
+const projectsRight: Project[] = [
+  {
+    title: "The world's first AI poker coach",
+    org: "PokerGPT",
+    status: "Shipped 2023",
+    href: "/projects/pokergpt",
+    mediaType: "video",
+    videoSrc: "/projects/pokergpt/pokergpt.mp4",
+    posterSrc: "/projects/pokergpt/pokergpt.png",
+    fallbackGradient: "from-green-100 via-emerald-100 to-teal-100",
+    tintColor: "rgba(221, 208, 252, 0.314)",
   },
   {
     title: "Bringing autofill to macOS",
@@ -118,7 +107,18 @@ const projectsRight: Project[] = [
     videoSrc: "/projects/1password/1password.mp4",
     posterSrc: "/projects/1password/1password.png",
     fallbackGradient: "from-blue-50 via-slate-100 to-gray-100",
-    tintColor: "rgba(25, 100, 210, 0.314)",
+    tintColor: "rgba(26, 49, 110, 0.314)",
+  },
+  {
+    title: "Making 0-1 building for everyone",
+    org: "Hack Western 12",
+    status: "Shipped 2025",
+    href: "https://hackwestern.com",
+    external: true,
+    mediaType: "image",
+    posterSrc: "/hackwestern.png",
+    fallbackGradient: "from-blue-100 via-indigo-100 to-violet-100",
+    tintColor: "rgb(26, 26, 26)",
   },
   {
     title: "Innovation management for Fortune 500s",
@@ -129,7 +129,7 @@ const projectsRight: Project[] = [
     videoSrc: "/projects/earth/earth.mp4",
     posterSrc: "/projects/earth/earth.png",
     fallbackGradient: "from-emerald-100 via-green-100 to-lime-100",
-    tintColor: "rgba(16, 185, 129, 0.314)",
+    tintColor: "rgba(122, 174, 233, 0.314)",
   },
 ];
 
@@ -174,7 +174,7 @@ function ProjectCard({ project }: { project: Project }) {
             style={{ backgroundColor: project.tintColor }}
           />
           {/* White wash overlay */}
-          <div className="absolute inset-0 bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-background/30" />
+          <div className="absolute inset-0 bg-background/0 transition-colors duration-300 ease-in-out group-hover:bg-background/40" />
         </div>
         <div className="flex flex-col justify-between gap-0.5 mt-1 transition-colors duration-300 ease-in-out lg:flex-row">
           <h3 className="text-[17px] font-normal font-serif text-foreground overflow-hidden">
@@ -218,7 +218,6 @@ export default function Home() {
                           href={exp.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[15px] font-normal font-[family-name:var(--font-geist-sans)] text-foreground hover:text-accent hover:underline underline-offset-4 transition-colors duration-200"
                         >
                           {exp.company}
                         </a>

@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div className="flex flex-col justify-between w-full max-w-[1800px] gap-12 min-h-[calc(100vh-120px)]">
         {/* Hero */}
         <div className="flex flex-col gap-8 py-8 animate-fade-in">
-          <h1 className="font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '44px', lineHeight: '48.4px', letterSpacing: '-0.88px', fontWeight: 400 }}>
+          <h1 className="hero-h1 font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '52px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
             I&apos;m a designer, builder, &amp; dancer&mdash;always seeking new
             adventures.
           </h1>

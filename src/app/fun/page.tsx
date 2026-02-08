@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 interface FunProject {
   title: string;
@@ -10,6 +9,7 @@ interface FunProject {
   href: string;
   gradient: string;
   imageSrc?: string;
+  videoSrc?: string;
 }
 
 const col1: FunProject[] = [
@@ -19,6 +19,7 @@ const col1: FunProject[] = [
     tag: "2nd place @ Hack Western 10",
     href: "https://devpost.com/software/infu",
     gradient: "from-slate-300 via-gray-200 to-zinc-300",
+    videoSrc: "/fun/infu.mp4",
   },
   {
     title: "Cursor for document editing",
@@ -26,6 +27,7 @@ const col1: FunProject[] = [
     tag: "Concept",
     href: "https://x.com/racheljychen/status/1941619198309896654",
     gradient: "from-violet-200 via-fuchsia-200 to-purple-300",
+    videoSrc: "/fun/cursordocediting.mp4",
   },
   {
     title: "App for spontaneous hangouts",
@@ -52,6 +54,7 @@ const col2: FunProject[] = [
     tag: "Hackathon",
     href: "https://hackwestern.com/",
     gradient: "from-blue-200 via-indigo-200 to-blue-300",
+    videoSrc: "/fun/hw.mp4",
   },
   {
     title: "Sign language translator",
@@ -67,6 +70,7 @@ const col2: FunProject[] = [
     tag: "Design Project",
     href: "https://x.com/racheljychen/status/1945714684721533250",
     gradient: "from-green-200 via-emerald-200 to-green-300",
+    videoSrc: "/fun/trailo.mp4",
   },
   {
     title: "Youtube video to organized notes",
@@ -101,6 +105,7 @@ const col3: FunProject[] = [
     tag: "Hack the 6ix 2024",
     href: "https://devpost.com/software/init-gaxp0c",
     gradient: "from-slate-200 via-gray-200 to-slate-300",
+    videoSrc: "/fun/init.mp4",
   },
   {
     title: "Real-time emotion-mapping",
@@ -123,6 +128,7 @@ const col3: FunProject[] = [
 function FunCard({ project }: { project: FunProject }) {
   const [imgError, setImgError] = useState(false);
   const showImage = project.imageSrc && !imgError;
+  const showVideo = !!project.videoSrc;
 
   return (
     <a
@@ -134,14 +140,21 @@ function FunCard({ project }: { project: FunProject }) {
       <div className="flex flex-col gap-2">
         <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
           <div className="relative w-full">
-            {showImage ? (
-              <Image
+            {showVideo ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover w-full h-auto"
+              >
+                <source src={project.videoSrc!} type="video/mp4" />
+              </video>
+            ) : showImage ? (
+              <img
                 src={project.imageSrc!}
                 alt={project.name}
-                width={600}
-                height={600}
                 className="object-cover w-full h-auto transition-opacity duration-300"
-                sizes="(max-width: 1024px) 100vw, 33vw"
                 onError={() => setImgError(true)}
               />
             ) : (
@@ -175,7 +188,7 @@ export default function FunPage() {
       <div className="flex flex-col w-full max-w-[1800px] gap-4">
         {/* Hero */}
         <div className="flex flex-col gap-8 py-8 animate-fade-in">
-          <h1 className="font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '44px', lineHeight: '48.4px', letterSpacing: '-0.88px', fontWeight: 400 }}>
+          <h1 className="hero-h1 font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '52px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
             I lose sleep to hackathons, design sprints, &amp; silly little side
             quests.
           </h1>
