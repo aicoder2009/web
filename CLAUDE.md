@@ -43,7 +43,8 @@ rachel-portfolio/
 │   ├── components/
 │   │   ├── ChatProvider.tsx        # Chat context + horizontal flex layout + mobile FAB
 │   │   ├── ChatSidebar.tsx         # Chat UI (desktop sidebar + mobile bottom sheet)
-│   │   ├── ChatMessage.tsx         # Chat message bubbles with markdown rendering
+│   │   ├── ChatMessage.tsx         # Chat message bubbles with markdown rendering + feedback buttons
+│   │   ├── ChainOfThought.tsx     # prompt-kit chain of thought loading indicator (theme is swappable)
 │   │   ├── TextSelectionPopover.tsx # "Ask ArunLM" popover on text selection
 │   │   ├── CustomCursor.tsx        # JS-driven cursor dot (hidden on mobile)
 │   │   ├── Footer.tsx              # Footer with heart animation, social links
@@ -70,6 +71,7 @@ rachel-portfolio/
 - **TextSelectionPopover**: Appears on text selection anywhere on the site, sends selected text to ArunLM
 - **API Route**: POST /api/chat → OpenAI Responses API (gpt-4o). Uses `file_search` tool with the "Personal Portfolio - Karthick" vector store. Multi-turn via `previous_response_id` chaining (`store: true`). Streams text deltas via SSE. Page context appended to instructions per request.
 - **Suggestions**: 3 random per page from pools defined in chatSuggestions.ts
+- **ChainOfThought**: prompt-kit Reasoning compound component that shows progressive loading steps while ArunLM is searching/thinking. Current theme is "The garage" (Lightbulb → Wrench → Rocket). **The theme can be changed** by editing the `STEPS` array in `src/components/ChainOfThought.tsx` — just swap the lucide-react icons and label strings. Other tested themes: "Cloud deploy" (Cloud/Database/Zap), "Neural net" (Brain/Zap/Lightbulb), "Treasure map" (Map/Compass/Gem), "Darkroom" (Aperture/Film/Image).
 
 ## Dev Commands
 ```bash

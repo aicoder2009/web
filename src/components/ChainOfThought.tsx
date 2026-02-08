@@ -7,7 +7,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { ChevronDown, Search, Lightbulb, Target } from "lucide-react";
+import { ChevronDown, Lightbulb, Wrench, Rocket } from "lucide-react";
 import TextShimmer from "./TextShimmer";
 
 /* ── Reasoning compound component (prompt-kit) ─────────────────── */
@@ -108,9 +108,9 @@ function ReasoningContent({ children }: { children: React.ReactNode }) {
 /* ── Chain of thought steps (prompt-kit pattern) ───────────────── */
 
 const STEPS = [
-  { icon: Search, label: "Searching portfolio…" },
-  { icon: Lightbulb, label: "Reading context…" },
-  { icon: Target, label: "Composing response…" },
+  { icon: Lightbulb, label: "Spark of an idea…" },
+  { icon: Wrench, label: "Tinkering with the prototype…" },
+  { icon: Rocket, label: "Ready for launch…" },
 ];
 
 function ChainOfThoughtSteps({ isVisible }: { isVisible: boolean }) {
@@ -137,13 +137,10 @@ function ChainOfThoughtSteps({ isVisible }: { isVisible: boolean }) {
         const isLast = i === visibleCount - 1;
         return (
           <div key={i} className="chat-msg-fade-in" data-last={isLast}>
-            {/* Step trigger: icon (swaps to chevron on hover) + label */}
-            <div className="group flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground/70 transition-colors">
-              <span className="relative inline-flex w-4 h-4 items-center justify-center shrink-0">
-                <span className="transition-opacity group-hover:opacity-0">
-                  <Icon className="w-4 h-4" />
-                </span>
-                <ChevronDown className="absolute w-4 h-4 opacity-0 transition-opacity group-hover:opacity-100" />
+            {/* Step trigger: icon + label */}
+            <div className="flex items-center gap-2 text-sm text-foreground/50">
+              <span className="inline-flex w-4 h-4 items-center justify-center shrink-0">
+                <Icon className="w-4 h-4" />
               </span>
               <span>{step.label}</span>
             </div>
