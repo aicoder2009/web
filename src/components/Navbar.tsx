@@ -26,7 +26,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="flex justify-center px-6 py-5 z-50 bg-background gap-6 border-b border-foreground/10 lg:h-16 items-center relative min-h-[32px]">
+    <header className="flex justify-center px-6 py-[21px] z-50 bg-background gap-6 border-b border-foreground/10 items-center relative">
       <div className="max-w-[1800px] w-full flex items-center gap-6 relative">
         {/* Logo / Name */}
         <div className="flex items-center w-full">

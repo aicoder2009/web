@@ -203,7 +203,7 @@ export default function CustomCursor() {
       <div ref={pillRef} style={{
         display: "flex",
         alignItems: "center",
-        background: "#e65f2e",
+        background: "#5B9A6F",
         color: "#fff",
         borderRadius: "999px",
         width: "16px",

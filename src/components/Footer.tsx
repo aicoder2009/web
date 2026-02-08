@@ -38,8 +38,8 @@ export default function Footer() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill={liked ? "#e65f2e" : "none"}
-              stroke={liked ? "#e65f2e" : "currentColor"}
+              fill={liked ? "#5B9A6F" : "none"}
+              stroke={liked ? "#5B9A6F" : "currentColor"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

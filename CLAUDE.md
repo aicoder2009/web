@@ -85,7 +85,7 @@ npm run lint     # ESLint
 | Background | `#fafcfd` |
 | Foreground | `#32404f` |
 | Foreground light | `rgba(50, 64, 79, 0.584)` |
-| Accent | `#e65f2e` |
+| Accent | `#5B9A6F` (sage green) |
 | Max content width | `1800px` |
 | Page padding | `24px` |
 | H1 desktop | 52px / 400 / -0.02em / 1.1 line-height |

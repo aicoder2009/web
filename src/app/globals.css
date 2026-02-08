@@ -5,7 +5,7 @@
   --background: #fafcfd;
   --foreground: #32404f;
   --foreground-light: rgba(50, 64, 79, 0.584);
-  --accent: #e65f2e;
+  --accent: #5B9A6F;
   --font-serif: 'Libre Baskerville', 'Georgia', serif;
 }
 
@@ -13,7 +13,7 @@
   --color-background: #fafcfd;
   --color-foreground: #32404f;
   --color-foreground-light: rgba(50, 64, 79, 0.584);
-  --color-accent: #e65f2e;
+  --color-accent: #5B9A6F;
 }
 
 /* Tailwind v4 preflight handles the reset - no manual * reset needed */
@@ -140,8 +140,8 @@ body * {
 
 /* Selection */
 ::selection {
-  background-color: rgba(230, 95, 46, 0.1);
-  color: var(--accent);
+  background-color: rgba(91, 154, 111, 0.2);
+  color: #3D6B4A;
 }
 
 /* Card hover white wash overlay */
