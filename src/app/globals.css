@@ -139,8 +139,8 @@ body * {
 
 /* Selection */
 ::selection {
-  background-color: var(--foreground);
-  color: var(--background);
+  background-color: rgba(230, 95, 46, 0.1);
+  color: var(--accent);
 }
 
 /* Card hover white wash overlay */

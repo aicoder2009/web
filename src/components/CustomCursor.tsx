@@ -21,14 +21,16 @@ export default function CustomCursor() {
   const updateCursor = useCallback(() => {
     const el = cursorRef.current;
     if (!el) return;
-    const active = hoveringRef.current || selectingRef.current;
-    const size = active ? 28 : 16;
+    const hovering = hoveringRef.current;
+    const selecting = selectingRef.current;
+    // Hovering links: bigger + translucent | Selecting text: smaller + opaque | Default: normal
+    const size = hovering ? 28 : selecting ? 12 : 16;
     el.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px)`;
     el.style.width = `${size}px`;
     el.style.height = `${size}px`;
     el.style.marginLeft = `${-size / 2}px`;
     el.style.marginTop = `${-size / 2}px`;
-    el.style.opacity = visibleRef.current ? (active ? "0.6" : "1") : "0";
+    el.style.opacity = visibleRef.current ? (hovering ? "0.6" : "1") : "0";
   }, []);
 
   useEffect(() => {
@@ -74,22 +76,9 @@ export default function CustomCursor() {
     };
 
     const onMouseUp = () => {
-      const sel = window.getSelection();
-      if (!sel || sel.isCollapsed) {
-        selectingRef.current = false;
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(updateCursor);
-      }
-    };
-
-    const onSelectionChange = () => {
-      const sel = window.getSelection();
-      const hasSelection = sel ? !sel.isCollapsed : false;
-      if (selectingRef.current !== hasSelection) {
-        selectingRef.current = hasSelection;
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(updateCursor);
-      }
+      selectingRef.current = false;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateCursor);
     };
 
     document.addEventListener("mousemove", onMouseMove);
@@ -98,7 +87,6 @@ export default function CustomCursor() {
     document.addEventListener("pointerout", onPointerOut);
     document.addEventListener("mousedown", onMouseDown);
     document.addEventListener("mouseup", onMouseUp);
-    document.addEventListener("selectionchange", onSelectionChange);
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
@@ -107,7 +95,6 @@ export default function CustomCursor() {
       document.removeEventListener("pointerout", onPointerOut);
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mouseup", onMouseUp);
-      document.removeEventListener("selectionchange", onSelectionChange);
       cancelAnimationFrame(rafRef.current);
     };
   }, [updateCursor, isTouchDevice]);
