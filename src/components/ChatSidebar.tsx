@@ -6,6 +6,7 @@ import { X, RotateCcw, Info, ArrowUp } from "lucide-react";
 import { useChat } from "./ChatProvider";
 import ChatMessage from "./ChatMessage";
 import { getSuggestions, getFollowUpSuggestions } from "@/data/chatSuggestions";
+import TextShimmer from "./TextShimmer";
 
 interface Message {
   role: "user" | "assistant";
@@ -463,12 +464,12 @@ function SidebarContent({
             />
           ))}
 
-          {/* Typing indicator */}
+          {/* Typing indicator — shimmer text */}
           {isStreaming && messages[messages.length - 1]?.role === "user" && (
-            <div className="flex items-center gap-1.5 py-2">
-              <span className="typing-dot" />
-              <span className="typing-dot" style={{ animationDelay: "0.1s" }} />
-              <span className="typing-dot" style={{ animationDelay: "0.2s" }} />
+            <div className="py-2">
+              <TextShimmer duration={2} spread={25} className="text-sm">
+                Thinking...
+              </TextShimmer>
             </div>
           )}
         </div>

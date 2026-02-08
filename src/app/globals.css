@@ -258,6 +258,12 @@ main {
 
 /* ======= ArunLM Chat ======= */
 
+/* Text shimmer — prompt-kit style loading text */
+@keyframes shimmer {
+  0% { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+
 /* Typing indicator bouncing dots */
 @keyframes typingBounce {
   0%, 60%, 100% { transform: translateY(0); }
