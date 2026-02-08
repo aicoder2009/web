@@ -226,13 +226,9 @@ export default function Home() {
                       {exp.year}
                     </h4>
                     <div className="flex flex-col lg:flex-row gap-0.5">
-                      <div className="w-56 min-w-56">
+                      <div className="w-56 min-w-56 text-[15px]">
                         {exp.url ? (
-                          <a
-                            href={exp.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                          <a href={exp.url} target="_blank" rel="noopener noreferrer">
                             {exp.company}
                           </a>
                         ) : (
