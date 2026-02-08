@@ -451,8 +451,8 @@ function SidebarContent({
               <Info size={16} className="cursor-pointer mt-1.5 opacity-50 hover:opacity-100 transition-all duration-200" />
             </button>
             {showInfo && (
-              <div className="absolute bg-background border border-foreground/10 z-50 top-9 left-0 min-w-[320px] p-3">
-                <div className="absolute -top-1 left-[88px] w-2 h-2 bg-background border-l border-t border-foreground/10 rotate-45" />
+              <div className="absolute bg-background border border-foreground/10 z-50 top-7 -left-2 min-w-[280px] p-3">
+                <div className="absolute -top-1 left-3 w-2 h-2 bg-background border-l border-t border-foreground/10 rotate-45" />
                 <p className="!text-sm text-foreground/70 leading-relaxed">
                   ArunLM is an AI chatbot. May contain hallucinations.
                 </p>
