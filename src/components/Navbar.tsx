@@ -14,6 +14,7 @@ export default function Navbar() {
     { href: "/", label: "Work" },
     { href: "/fun", label: "Fun" },
     { href: "/about", label: "About" },
+    { href: "/resume.pdf", label: "Resume", external: true },
   ];
 
   const handleArunLMClick = () => {
@@ -43,23 +44,37 @@ export default function Navbar() {
         {/* Desktop nav + ArunLM */}
         <div className="md:flex hidden gap-8 w-full justify-end items-center">
           <div className="flex gap-8 items-center">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="group"
-              >
-                <h4
-                  className={`text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 !opacity-100 ${
-                    pathname === link.href
-                      ? "text-accent"
-                      : "text-foreground-light hover:text-accent"
-                  }`}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
                 >
-                  {link.label}
-                </h4>
-              </Link>
-            ))}
+                  <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 !opacity-100 text-foreground-light hover:text-accent">
+                    {link.label}
+                  </h4>
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="group"
+                >
+                  <h4
+                    className={`text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 !opacity-100 ${
+                      pathname === link.href
+                        ? "text-accent"
+                        : "text-foreground-light hover:text-accent"
+                    }`}
+                  >
+                    {link.label}
+                  </h4>
+                </Link>
+              )
+            )}
           </div>
 
           {/* ArunLM button */}
@@ -144,24 +159,39 @@ export default function Navbar() {
       {/* Mobile nav dropdown */}
       {mobileOpen && (
         <nav className="md:hidden flex flex-col gap-4 pt-4 pb-2 w-full max-w-[1800px]">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="group"
-              onClick={() => setMobileOpen(false)}
-            >
-              <h4
-                className={`text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 ${
-                  pathname === link.href
-                    ? "text-accent"
-                    : "text-foreground-light hover:text-accent"
-                }`}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+                onClick={() => setMobileOpen(false)}
               >
-                {link.label}
-              </h4>
-            </Link>
-          ))}
+                <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 text-foreground-light hover:text-accent">
+                  {link.label}
+                </h4>
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="group"
+                onClick={() => setMobileOpen(false)}
+              >
+                <h4
+                  className={`text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 ${
+                    pathname === link.href
+                      ? "text-accent"
+                      : "text-foreground-light hover:text-accent"
+                  }`}
+                >
+                  {link.label}
+                </h4>
+              </Link>
+            )
+          )}
         </nav>
       )}
     </header>
