@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Copy, Check } from "lucide-react";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -44,13 +46,32 @@ export default function ChatMessage({
     );
   }
 
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(content);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div className="flex flex-col items-start chat-msg-fade-in">
+    <div className="flex flex-col items-start chat-msg-fade-in group/msg">
       <div className="max-w-[320px] text-foreground">
         <div className="text-sm py-4 prose prose-sm max-w-none prose-p:my-2 prose-p:leading-relaxed prose-strong:text-current prose-em:text-current prose-code:text-current prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-ul:my-2 prose-li:my-1 text-current">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
           {isStreaming && <span className="streaming-cursor" />}
         </div>
+        {!isStreaming && content && (
+          <div className="flex justify-end -mt-2 mb-1">
+            <button
+              onClick={handleCopy}
+              className="p-1 rounded opacity-0 group-hover/msg:opacity-50 hover:!opacity-100 max-md:opacity-50 transition-opacity duration-200"
+              aria-label="Copy message"
+            >
+              {copied ? <Check size={13} className="text-accent" /> : <Copy size={13} />}
+            </button>
+          </div>
+        )}
         {suggestions && suggestions.length > 0 && (
           <div className="mt-4 pt-2 border-t border-foreground/10 chat-suggestions-fade-in">
             {suggestions.map((s, i) => (

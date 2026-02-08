@@ -1,7 +1,40 @@
 import OpenAI from "openai";
+import { headers } from "next/headers";
 
 function getClient() {
   return new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
+}
+
+// --- Soft daily rate limit (in-memory, resets on server restart) ---
+const DAILY_LIMIT = 50; // requests per IP per day
+const MAX_INPUT_CHARS = 1333; // ~333 tokens
+
+const dailyUsage = new Map<string, { count: number; resetAt: number }>();
+
+function getDailyUsage(ip: string): { count: number; remaining: number; limited: boolean } {
+  const now = Date.now();
+  const entry = dailyUsage.get(ip);
+
+  if (!entry || now >= entry.resetAt) {
+    // Reset at midnight UTC
+    const tomorrow = new Date();
+    tomorrow.setUTCHours(24, 0, 0, 0);
+    dailyUsage.set(ip, { count: 0, resetAt: tomorrow.getTime() });
+    return { count: 0, remaining: DAILY_LIMIT, limited: false };
+  }
+
+  return {
+    count: entry.count,
+    remaining: Math.max(0, DAILY_LIMIT - entry.count),
+    limited: entry.count >= DAILY_LIMIT,
+  };
+}
+
+function incrementUsage(ip: string) {
+  const entry = dailyUsage.get(ip);
+  if (entry) {
+    entry.count++;
+  }
 }
 
 // Pull instructions from the assistant configured on platform.openai.com
@@ -108,6 +141,39 @@ export async function POST(req: Request) {
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
+
+    // --- Per-prompt token limit (~1000 tokens ≈ 4000 chars) ---
+    if (typeof message === "string" && message.length > MAX_INPUT_CHARS) {
+      return new Response(
+        JSON.stringify({
+          error: "prompt_too_long",
+          message: "Your message is too long. Please keep it under ~333 tokens (about 1,333 characters).",
+          maxChars: MAX_INPUT_CHARS,
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // --- Soft daily rate limit ---
+    const headersList = await headers();
+    const ip =
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headersList.get("x-real-ip") ||
+      "unknown";
+
+    const usage = getDailyUsage(ip);
+    if (usage.limited) {
+      return new Response(
+        JSON.stringify({
+          error: "daily_limit_reached",
+          message: "You've reached the daily message limit. Come back tomorrow for more conversations!",
+          remaining: 0,
+        }),
+        { status: 429, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    incrementUsage(ip);
 
     const vectorStoreId = process.env.OPENAI_VECTOR_STORE_ID;
     if (!vectorStoreId) {

@@ -2,11 +2,13 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, RotateCcw, Info, ArrowUp } from "lucide-react";
+import { X, RotateCcw, Info, ArrowUp, ArrowDown } from "lucide-react";
 import { useChat } from "./ChatProvider";
 import ChatMessage from "./ChatMessage";
 import { getSuggestions, getFollowUpSuggestions } from "@/data/chatSuggestions";
 import TextShimmer from "./TextShimmer";
+
+const MAX_INPUT_CHARS = 1333; // ~333 tokens
 
 interface Message {
   role: "user" | "assistant";
@@ -45,6 +47,7 @@ export default function ChatSidebar() {
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [dailyLimitReached, setDailyLimitReached] = useState(false);
   const [welcomeHeading, setWelcomeHeading] = useState(
     () => welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]
   );
@@ -94,7 +97,8 @@ export default function ChatSidebar() {
 
   const sendMessage = useCallback(
     async (content: string, quotedText?: string) => {
-      if (!content.trim() || isStreaming) return;
+      if (!content.trim() || isStreaming || dailyLimitReached) return;
+      if (content.length > MAX_INPUT_CHARS) return;
 
       const userMessage: Message = {
         role: "user",
@@ -125,7 +129,18 @@ export default function ChatSidebar() {
 
         if (!res.ok) {
           if (res.status === 429) {
+            const data = await res.json().catch(() => null);
+            if (data?.error === "daily_limit_reached") {
+              setDailyLimitReached(true);
+              throw new Error(data.message);
+            }
             throw new Error("Sorry, I can't afford that many requests at once. Please come back soon... maybe in 30 min");
+          } else if (res.status === 400) {
+            const data = await res.json().catch(() => null);
+            if (data?.error === "prompt_too_long") {
+              throw new Error(data.message);
+            }
+            throw new Error("Invalid request. Please try again.");
           } else if (res.status === 500) {
             throw new Error("There's a server configuration issue. Please check the console for more details.");
           } else {
@@ -199,7 +214,7 @@ export default function ChatSidebar() {
         abortRef.current = null;
       }
     },
-    [messages, isStreaming, pageContext, setSelectedText]
+    [messages, isStreaming, dailyLimitReached, pageContext, setSelectedText]
   );
 
   const handleSubmit = useCallback(() => {
@@ -279,6 +294,7 @@ export default function ChatSidebar() {
               followUpSuggestions={followUpSuggestions}
               selectedText={selectedText}
               welcomeHeading={welcomeHeading}
+              dailyLimitReached={dailyLimitReached}
               onClearSelection={() => setSelectedText("")}
               onSubmit={handleSubmit}
               onKeyDown={handleKeyDown}
@@ -312,6 +328,7 @@ export default function ChatSidebar() {
               followUpSuggestions={followUpSuggestions}
               selectedText={selectedText}
               welcomeHeading={welcomeHeading}
+              dailyLimitReached={dailyLimitReached}
               onClearSelection={() => setSelectedText("")}
               onSubmit={handleSubmit}
               onKeyDown={handleKeyDown}
@@ -341,6 +358,7 @@ function SidebarContent({
   followUpSuggestions,
   selectedText,
   welcomeHeading,
+  dailyLimitReached,
   onClearSelection,
   onSubmit,
   onKeyDown,
@@ -362,6 +380,7 @@ function SidebarContent({
   followUpSuggestions: string[];
   selectedText: string;
   welcomeHeading: string;
+  dailyLimitReached: boolean;
   onClearSelection: () => void;
   onSubmit: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
@@ -370,6 +389,45 @@ function SidebarContent({
   onClose: () => void;
   mobile?: boolean;
 }) {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  // Track scroll position to show/hide scroll-to-bottom button
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const isNearBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 100;
+      setShowScrollButton(!isNearBottom);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [scrollRef]);
+
+  const scrollToBottom = useCallback(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [scrollRef]);
+
+  const inputTooLong = input.length > MAX_INPUT_CHARS;
+  const inputNearLimit = input.length > MAX_INPUT_CHARS * 0.85;
+
+  // Auto-resize textarea
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setInput(e.target.value);
+      const ta = e.target;
+      ta.style.height = "auto";
+      ta.style.height = Math.min(ta.scrollHeight, 120) + "px";
+    },
+    [setInput]
+  );
+
+  // Reset textarea height when input is cleared (after send)
+  useEffect(() => {
+    if (!input && inputRef.current) {
+      inputRef.current.style.height = "auto";
+    }
+  }, [input, inputRef]);
+
   return (
     <div className="h-full flex flex-col">
       {/* Mobile drag handle */}
@@ -421,62 +479,89 @@ function SidebarContent({
       </div>
 
       {/* Messages area */}
-      <div ref={scrollRef} className="flex flex-col overflow-y-auto p-4 gap-4 h-full chat-scrollbar">
-        <div className="flex flex-col flex-1 space-y-4">
-          {/* Welcome state — pushed to bottom like source */}
-          {!hasMessages && (
-            <div className="flex flex-col justify-end flex-1 space-y-4">
-              <h3 className="text-[22px] font-medium !text-foreground font-serif">
-                {welcomeHeading}
-              </h3>
-              <div className="w-full">
-                <div className="grid gap-1">
-                  {suggestions.map((s, i) => (
-                    <button
-                      key={i}
-                      onClick={() => onSuggestionClick(s)}
-                      className="text-left py-2.5 -mx-2 px-2 hover:bg-accent/5 transition-colors text-[15px] text-foreground/70 flex items-start gap-1.5 group hover:text-accent rounded-md"
-                    >
-                      <SubdirectoryArrowRight className="text-foreground/70 mt-[1px] shrink-0 group-hover:text-accent" />
-                      <span>{s}</span>
-                    </button>
-                  ))}
+      <div className="relative flex-1 overflow-hidden">
+        <div ref={scrollRef} className="flex flex-col overflow-y-auto p-4 gap-4 h-full chat-scrollbar">
+          <div className="flex flex-col flex-1 space-y-4">
+            {/* Welcome state — pushed to bottom like source */}
+            {!hasMessages && (
+              <div className="flex flex-col justify-end flex-1 space-y-4">
+                <h3 className="text-[22px] font-medium !text-foreground font-serif">
+                  {welcomeHeading}
+                </h3>
+                <div className="w-full">
+                  <div className="grid gap-1">
+                    {suggestions.map((s, i) => (
+                      <button
+                        key={i}
+                        onClick={() => onSuggestionClick(s)}
+                        className="text-left py-2.5 -mx-2 px-2 hover:bg-accent/5 transition-colors text-[15px] text-foreground/70 flex items-start gap-1.5 group hover:text-accent rounded-md"
+                      >
+                        <SubdirectoryArrowRight className="text-foreground/70 mt-[1px] shrink-0 group-hover:text-accent" />
+                        <span>{s}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {messages.map((msg, i) => (
-            <ChatMessage
-              key={i}
-              role={msg.role}
-              content={msg.content}
-              quotedText={msg.quotedText}
-              isStreaming={
-                isStreaming && i === messages.length - 1 && msg.role === "assistant" && msg.content.length > 0
-              }
-              suggestions={
-                i === messages.length - 1 && msg.role === "assistant" && !isStreaming
-                  ? followUpSuggestions
-                  : undefined
-              }
-              onSuggestionClick={onSuggestionClick}
-            />
-          ))}
+            {messages.map((msg, i) => (
+              <ChatMessage
+                key={i}
+                role={msg.role}
+                content={msg.content}
+                quotedText={msg.quotedText}
+                isStreaming={
+                  isStreaming && i === messages.length - 1 && msg.role === "assistant" && msg.content.length > 0
+                }
+                suggestions={
+                  i === messages.length - 1 && msg.role === "assistant" && !isStreaming
+                    ? followUpSuggestions
+                    : undefined
+                }
+                onSuggestionClick={onSuggestionClick}
+              />
+            ))}
 
-          {/* Typing indicator — shimmer text */}
-          {isStreaming && messages[messages.length - 1]?.role === "user" && (
-            <div className="py-2">
-              <TextShimmer duration={2} spread={25} className="text-sm">
-                Thinking...
-              </TextShimmer>
-            </div>
-          )}
+            {/* Typing indicator — shimmer text */}
+            {isStreaming && messages[messages.length - 1]?.role === "user" && (
+              <div className="py-2">
+                <TextShimmer duration={2} spread={25} className="text-sm">
+                  Thinking...
+                </TextShimmer>
+              </div>
+            )}
+          </div>
         </div>
+
+        {/* Scroll-to-bottom button */}
+        <button
+          onClick={scrollToBottom}
+          className={`absolute bottom-3 left-1/2 -translate-x-1/2 w-8 h-8 flex items-center justify-center bg-accent/10 rounded-full text-accent hover:bg-accent/15 transition-all duration-200 ${
+            showScrollButton ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+          aria-label="Scroll to bottom"
+        >
+          <ArrowDown size={16} />
+        </button>
       </div>
 
       {/* Input area */}
       <div className="p-4 pt-0">
+        {/* Daily limit notice */}
+        {dailyLimitReached && (
+          <div className="mb-2 px-3 py-2 bg-foreground/5 border border-foreground/10 text-sm text-foreground/70 leading-relaxed">
+            You&apos;ve hit the daily limit. Come back tomorrow for more conversations!
+          </div>
+        )}
+
+        {/* Input too long warning */}
+        {inputTooLong && (
+          <div className="mb-2 px-3 py-2 bg-red-50 border border-red-200 text-sm text-red-600 leading-relaxed">
+            Message too long — please keep it under ~333 tokens ({MAX_INPUT_CHARS.toLocaleString()} characters).
+          </div>
+        )}
+
         <div className="flex flex-col p-2 gap-2 border border-foreground/10 bg-background">
           {/* Quoted text preview — inside the input container */}
           {selectedText && (
@@ -502,22 +587,29 @@ function SidebarContent({
             <textarea
               ref={inputRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleInputChange}
               onKeyDown={onKeyDown}
-              placeholder={selectedText ? "Ask about this quote..." : "Ask about Karthick..."}
-              className="flex-1 px-2 py-1 text-foreground placeholder:text-foreground/50 focus:outline-none disabled:opacity-50 bg-transparent resize-none min-h-[24px] max-h-[120px] leading-normal"
+              placeholder={dailyLimitReached ? "Daily limit reached..." : selectedText ? "Ask about this quote..." : "Ask about Karthick..."}
+              disabled={dailyLimitReached}
+              className="flex-1 px-2 py-1 text-foreground placeholder:text-foreground/50 focus:outline-none disabled:opacity-50 bg-transparent resize-none min-h-[24px] max-h-[120px] leading-normal overflow-y-auto"
               style={{ fontSize: "16px" }}
               rows={1}
             />
             <button
               onClick={onSubmit}
-              disabled={!input.trim() || isStreaming}
+              disabled={!input.trim() || isStreaming || inputTooLong || dailyLimitReached}
               className="w-8 h-8 flex items-center justify-center bg-accent/10 rounded-full text-accent hover:bg-accent/5 disabled:opacity-50 disabled:bg-foreground/0 disabled:text-foreground/50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
               aria-label="Send message"
             >
               <ArrowUp size={16} />
             </button>
           </div>
+          {/* Character counter when near limit */}
+          {inputNearLimit && (
+            <div className={`text-xs text-right px-1 ${inputTooLong ? "text-red-500" : "text-foreground/40"}`}>
+              {input.length.toLocaleString()}/{MAX_INPUT_CHARS.toLocaleString()}
+            </div>
+          )}
         </div>
       </div>
     </div>
