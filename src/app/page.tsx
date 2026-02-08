@@ -2,28 +2,40 @@ import Link from "next/link";
 
 const experiences = [
   {
-    year: "2025",
-    company: "Bloomberg",
-    role: "Software Engineering Intern",
-    url: "https://bloomberg.com",
-  },
-  {
-    year: "2025",
-    company: "1Password",
-    role: "Product Design Intern",
-    url: "https://1password.com",
+    year: "2024–NOW",
+    company: "Aigenie Enterprises",
+    role: "Founder & CEO",
+    url: "https://aigenie.biz",
   },
   {
     year: "2024",
-    company: "Royal Bank of Canada",
-    role: "Software Engineering Intern",
-    url: "https://rbc.com",
+    company: "AWS",
+    role: "AI Practitioner Certification",
+    url: "https://aws.amazon.com/certification/",
   },
   {
     year: "2023",
-    company: "Onova",
-    role: "Product Design + Engineering Intern",
-    url: "https://onova.io",
+    company: "UN GYEL",
+    role: "Global Youth Empowerment Leaders Program",
+    url: undefined,
+  },
+  {
+    year: "2021",
+    company: "KidCon",
+    role: "Organizer, Cloud Computing Conference for Young People",
+    url: undefined,
+  },
+  {
+    year: "2019",
+    company: "AWS Public Sector Summit",
+    role: "Keynote Speaker, Washington DC (40,000 attendees)",
+    url: undefined,
+  },
+  {
+    year: "2018",
+    company: "AWS",
+    role: "Cloud Practitioner Certified (youngest ever, age 9)",
+    url: "https://aws.amazon.com/certification/",
   },
 ];
 
@@ -199,7 +211,7 @@ export default function Home() {
             {/* Hero */}
             <div className="flex flex-col w-full gap-4">
               <h1 className="hero-h1 font-serif text-foreground max-w-[700px]" style={{ fontSize: '52px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
-                I&apos;m Rachel, a product designer who{" "}
+                I&apos;m Karthick, an entrepreneur who{" "}
                 <span className="italic">engineers</span>.
               </h1>
             </div>
@@ -214,13 +226,17 @@ export default function Home() {
                     </h4>
                     <div className="flex flex-col lg:flex-row gap-0.5">
                       <div className="w-56 min-w-56">
-                        <a
-                          href={exp.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {exp.company}
-                        </a>
+                        {exp.url ? (
+                          <a
+                            href={exp.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {exp.company}
+                          </a>
+                        ) : (
+                          <span>{exp.company}</span>
+                        )}
                       </div>
                       <p className="text-[15px] text-foreground-light">
                         {exp.role}

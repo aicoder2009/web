@@ -16,7 +16,7 @@ export default function Footer() {
   };
 
   const handleCopyEmail = useCallback(() => {
-    navigator.clipboard.writeText("rachelc0715@gmail.com");
+    navigator.clipboard.writeText("karthickarun2009@gmail.com");
     window.dispatchEvent(new CustomEvent("email-copied"));
   }, []);
 
@@ -50,14 +50,14 @@ export default function Footer() {
             </svg>
           </button>
           <span className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light">
-            by Rachel
+            by Karthick
           </span>
         </div>
 
         <div className="flex flex-row items-end gap-3 md:gap-8 w-full md:w-fit justify-between">
           <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-3 md:gap-8">
             <a
-              href="https://www.linkedin.com/in/rachel-jiayi-chen/"
+              href="https://linkedin.com/in/karthickarun"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:!opacity-100"
@@ -74,17 +74,7 @@ export default function Footer() {
               EMAIL
             </button>
             <a
-              href="https://x.com/racheljychen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:!opacity-100"
-            >
-              <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light hover:text-accent !opacity-100 cursor-pointer transition-colors duration-200">
-                X
-              </h4>
-            </a>
-            <a
-              href="https://github.com/rachelchxn"
+              href="https://github.com/aicoder2009"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:!opacity-100"
@@ -94,13 +84,13 @@ export default function Footer() {
               </h4>
             </a>
             <a
-              href="https://devpost.com/rachelc0715"
+              href="https://bsky.app/profile/aicoder2009.bsky.social"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:!opacity-100"
             >
               <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light hover:text-accent !opacity-100 cursor-pointer transition-colors duration-200">
-                Devpost
+                Bluesky
               </h4>
             </a>
           </div>

@@ -2,10 +2,12 @@ const suggestions: Record<string, string[]> = {
   home: [
     "What projects has Karthick built?",
     "Tell me about Aigenie",
+    "What is Lucky?",
     "What's Karthick's background?",
     "What tech stack does Karthick use?",
     "How can I contact Karthick?",
     "What certifications does Karthick have?",
+    "Tell me about KidCon",
   ],
   about: [
     "What are Karthick's interests?",
@@ -60,6 +62,16 @@ const keywordSuggestions: Record<string, string[]> = {
     "What's Aigenie's mission?",
     "Tell me about Aigenie Enterprises",
     "What does Aigenie build?",
+  ],
+  lucky: [
+    "What is Lucky?",
+    "How does Lucky work?",
+    "What accessibility features does Lucky have?",
+  ],
+  kidcon: [
+    "What was KidCon?",
+    "Tell me about KidCon 2021",
+    "Why did Karthick organize KidCon?",
   ],
   dotclock: [
     "How does DotClock work?",

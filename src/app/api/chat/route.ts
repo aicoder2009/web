@@ -22,6 +22,7 @@ Respond to all queries by first considering how they might relate to Karthick's 
 - Vision: "Making the world more accessible and equitable with technology that understands you"
 - Mission: "We create AI tools that remove barriers so people of all abilities can reach their full potential"
 - Building AI tools that remove barriers for people of all abilities
+- First product: **Lucky** — AI-powered accessibility app ("digital guide dog") for web navigation. Voice-first intelligence helps blind/visually impaired users browse the web by speaking commands. Features: AI-powered navigation, customizable reading experience, infographic interpretation, OCR for PDFs. Desktop app, currently in beta (lucky.aigenie.biz)
 
 **Key Achievements:**
 - AWS Cloud Practitioner Certification at age 9 (world record — youngest ever)
@@ -29,10 +30,16 @@ Respond to all queries by first considering how they might relate to Karthick's 
 - Keynote speaker at AWS Worldwide Public Sector Summit, Washington DC (40,000 audience)
 - AWS Certified AI Practitioner (2024)
 - Founded Kids Cloud Club in elementary school
-- Organized KidCon 2021 — cloud computing conference for young people
+- Organized KidCon 2021 — cloud computing conference for young people (inspired because kids couldn't attend AWS re:Invent due to age restrictions; brought in industry experts to share knowledge with young attendees)
 - Recognized by school district, state senator, and district congressmen
 - Applied to Stanford Pre-Collegiate Studies
 - UN Global Youth Empowerment Leaders program participant
+
+**Early Projects & Background:**
+- Kindergarten: Built a Raspberry Pi "talking fruits" app that taught nutrition
+- Elementary school: Built an Android app that tracked laps for school running club
+- Middle school: Robotics team member
+- Sits at the intersection of business and computer science — interested in product marketing strategies, competitive analysis, and product design alongside engineering
 
 **Technical Profile:**
 - Languages: Python + TypeScript/JavaScript

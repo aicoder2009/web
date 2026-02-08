@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props) {
   if (!project) return {};
 
   return {
-    title: `${project.title} | Rachel Chen`,
+    title: `${project.title} | Karthick Arun`,
     description: project.subtitle,
   };
 }

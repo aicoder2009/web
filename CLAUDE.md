@@ -1,7 +1,11 @@
 # Karthick Arun Portfolio — CLAUDE.md
 
 ## Project Overview
-A portfolio site for Karthick Arun, built as a customized fork of the rachelchen.tech design. Features an AI chatbot (ArunLM) powered by OpenAI Responses API (gpt-4o) with file search over the "Personal Portfolio - Karthick" vector store.
+A portfolio site for Karthick Arun, built as a customized fork of the rachelchen.tech design. All content has been replaced with Karthick's — Home page (hero, experience milestones, project cards), About page (full bio), project detail pages (9 projects), Footer (social links), and ArunLM chatbot. Features an AI chatbot (ArunLM) powered by OpenAI Responses API (gpt-4o) with file search over the "Personal Portfolio - Karthick" vector store.
+
+**Note:** Project detail pages use placeholder hero images (gradient fallbacks render when images are missing). The user needs to provide:
+1. About page photos — 6 photos to replace placeholders in `/public/about/`
+2. Project screenshots (optional) — hero images at `/public/projects/{slug}/hero.png`
 
 ## Tech Stack
 - **Framework**: Next.js 16.1.6 (App Router, React Server Components, Turbopack)
