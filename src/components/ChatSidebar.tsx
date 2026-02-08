@@ -6,7 +6,7 @@ import { X, RotateCcw, Info, ArrowUp, ArrowDown } from "lucide-react";
 import { useChat } from "./ChatProvider";
 import ChatMessage from "./ChatMessage";
 import { getSuggestions, getFollowUpSuggestions } from "@/data/chatSuggestions";
-import TextShimmer from "./TextShimmer";
+import ChainOfThought from "./ChainOfThought";
 
 const MAX_INPUT_CHARS = 1333; // ~333 tokens
 
@@ -523,14 +523,15 @@ function SidebarContent({
               />
             ))}
 
-            {/* Typing indicator — shimmer text */}
-            {isStreaming && messages[messages.length - 1]?.role === "user" && (
-              <div className="py-2">
-                <TextShimmer duration={2} spread={25} className="text-sm">
-                  Thinking...
-                </TextShimmer>
-              </div>
-            )}
+            {/* Chain of thought: visible while streaming and no content yet */}
+            <ChainOfThought
+              isVisible={
+                isStreaming &&
+                (messages[messages.length - 1]?.role === "user" ||
+                  (messages[messages.length - 1]?.role === "assistant" &&
+                    !messages[messages.length - 1]?.content))
+              }
+            />
           </div>
         </div>
 

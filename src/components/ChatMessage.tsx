@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Copy, Check, ChevronDown } from "lucide-react";
+import { Copy, Check, ChevronDown, ThumbsUp, ThumbsDown } from "lucide-react";
 
 const USER_MSG_TRUNCATE = 200; // characters before truncation kicks in
 
@@ -85,6 +85,7 @@ export default function ChatMessage({
   }
 
   const [copied, setCopied] = useState(false);
+  const [feedback, setFeedback] = useState<"up" | "down" | null>(null);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(content);
@@ -100,13 +101,31 @@ export default function ChatMessage({
           {isStreaming && <span className="streaming-cursor" />}
         </div>
         {!isStreaming && content && (
-          <div className="flex justify-end -mt-2 mb-1">
+          <div className="flex items-center gap-0.5 -mt-2 mb-1 opacity-0 group-hover/msg:opacity-100 max-md:opacity-100 transition-opacity duration-200">
             <button
               onClick={handleCopy}
-              className="p-1 rounded opacity-0 group-hover/msg:opacity-50 hover:!opacity-100 max-md:opacity-50 transition-opacity duration-200"
+              className="flex items-center justify-center w-7 h-7 rounded-md text-foreground/40 hover:text-foreground/70 transition-colors"
               aria-label="Copy message"
             >
               {copied ? <Check size={13} className="text-accent" /> : <Copy size={13} />}
+            </button>
+            <button
+              onClick={() => setFeedback(feedback === "up" ? null : "up")}
+              className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors ${
+                feedback === "up" ? "text-accent" : "text-foreground/40 hover:text-foreground/70"
+              }`}
+              aria-label="Helpful"
+            >
+              <ThumbsUp size={13} />
+            </button>
+            <button
+              onClick={() => setFeedback(feedback === "down" ? null : "down")}
+              className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors ${
+                feedback === "down" ? "text-red-400" : "text-foreground/40 hover:text-foreground/70"
+              }`}
+              aria-label="Not helpful"
+            >
+              <ThumbsDown size={13} />
             </button>
           </div>
         )}
