@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, RotateCcw, Info, ArrowUp } from "lucide-react";
 import { useChat } from "./ChatProvider";
@@ -226,13 +226,20 @@ export default function ChatSidebar() {
   const hasMessages = messages.length > 0;
 
   // Follow-up suggestions for the last assistant message (keyword-based)
-  const followUpSuggestions =
-    !isStreaming && hasMessages && messages[messages.length - 1]?.role === "assistant"
-      ? getFollowUpSuggestions(
-          messages[messages.length - 1].content,
-          messages.map((m) => m.content)
-        )
-      : [];
+  // Memoize so they don't reshuffle on every keystroke
+  const lastAssistantMsg =
+    hasMessages && messages[messages.length - 1]?.role === "assistant"
+      ? messages[messages.length - 1].content
+      : null;
+
+  const followUpSuggestions = useMemo(() => {
+    if (isStreaming || !lastAssistantMsg) return [];
+    return getFollowUpSuggestions(
+      lastAssistantMsg,
+      messages.map((m) => m.content)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStreaming, lastAssistantMsg]);
 
   return (
     <AnimatePresence>
@@ -469,23 +476,27 @@ function SidebarContent({
 
       {/* Input area */}
       <div className="p-4 pt-0">
-        {/* Quoted text preview */}
-        {selectedText && (
-          <div className="flex items-center gap-3 border border-foreground/10 border-b-0 bg-foreground/[0.03] px-3 py-2.5">
-            <span className="text-foreground-light/30 text-3xl font-serif leading-none shrink-0">&ldquo;</span>
-            <span className="flex-1 text-sm text-foreground-light truncate">
-              {selectedText}
-            </span>
-            <button
-              onClick={onClearSelection}
-              className="p-0.5 text-foreground-light/40 hover:text-foreground transition-colors shrink-0"
-              aria-label="Clear quote"
-            >
-              <X size={14} />
-            </button>
-          </div>
-        )}
         <div className="flex flex-col p-2 gap-2 border border-foreground/10 bg-background">
+          {/* Quoted text preview — inside the input container */}
+          {selectedText && (
+            <div className="w-full text-foreground/80 bg-foreground/5 px-3 py-2 flex items-start gap-2 group">
+              <div className="flex items-center pt-1">
+                <svg width="15" height="12" viewBox="0 0 5 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.695992 1.54784H1.15199C1.48799 1.61984 1.69199 1.84784 1.69199 2.24384C1.69199 2.69984 1.34399 2.99984 0.899992 2.99984C0.299992 2.99984 -7.7635e-06 2.51984 -7.7635e-06 1.89584C-7.7635e-06 0.911835 0.551992 0.0958357 1.94399 -0.000164509V0.479836C1.06799 0.611835 0.695992 0.971836 0.695992 1.54784ZM3.05999 1.54784H3.51599C3.85199 1.61984 4.05599 1.84784 4.05599 2.24384C4.05599 2.69984 3.70799 2.99984 3.26399 2.99984C2.66399 2.99984 2.36399 2.51984 2.36399 1.89584C2.36399 0.911835 2.91599 0.0958357 4.30799 -0.000164509V0.479836C3.43199 0.611835 3.05999 0.971836 3.05999 1.54784Z" fill="currentColor" />
+                </svg>
+              </div>
+              <p className="flex-1 text-sm leading-relaxed line-clamp-2">
+                {selectedText}
+              </p>
+              <button
+                onClick={onClearSelection}
+                className="p-0.5 hover:opacity-50 rounded transition-colors flex-shrink-0"
+                aria-label="Dismiss"
+              >
+                <X size={14} className="text-foreground/50" />
+              </button>
+            </div>
+          )}
           <div className="flex items-end gap-2">
             <textarea
               ref={inputRef}
