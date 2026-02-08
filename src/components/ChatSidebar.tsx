@@ -472,7 +472,7 @@ function SidebarContent({
         {/* Quoted text preview */}
         {selectedText && (
           <div className="flex items-center gap-3 border border-foreground/10 border-b-0 bg-foreground/[0.03] px-3 py-2.5">
-            <span className="text-foreground-light/40 text-lg font-serif leading-none shrink-0">&ldquo;</span>
+            <span className="text-foreground-light/30 text-3xl font-serif leading-none shrink-0">&ldquo;</span>
             <span className="flex-1 text-sm text-foreground-light truncate">
               {selectedText}
             </span>
