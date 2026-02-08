@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: "Work" },
@@ -13,9 +15,9 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="flex justify-center px-6 py-5 z-50 bg-background border-b border-foreground/10 lg:h-16 items-center relative min-h-[32px]">
-      <div className="max-w-[1800px] w-full flex items-center gap-6 relative">
-        <Link href="/" className="flex flex-col sm:flex-row sm:inline-flex sm:gap-4 gap-0 w-full">
+    <header className="flex flex-col justify-center px-6 py-5 z-50 bg-background border-b border-foreground/10 lg:h-16 relative min-h-[32px]">
+      <div className="max-w-[1800px] w-full flex items-center gap-6 relative mx-auto">
+        <Link href="/" className="flex flex-col sm:flex-row sm:inline-flex sm:gap-4 gap-0 w-full" onClick={() => setMobileOpen(false)}>
           <h4 className="text-[15px] font-medium font-[family-name:var(--font-geist-mono)] uppercase text-foreground tracking-normal">
             Rachel Chen
           </h4>
@@ -25,6 +27,7 @@ export default function Navbar() {
         </Link>
 
         <div className="flex gap-2 lg:w-full justify-end items-center">
+          {/* Desktop nav */}
           <nav className="md:flex hidden items-center gap-6">
             {navLinks.map((link) => (
               <Link
@@ -53,6 +56,8 @@ export default function Navbar() {
               </h4>
             </a>
           </nav>
+
+          {/* RacheLLM button */}
           <button className="group flex items-center hover:opacity-100 hover:text-accent transition-all duration-200 rounded-full p-2 h-8 w-auto opacity-50" style={{ marginRight: '-8px' }}>
             <svg
               width="16"
@@ -67,8 +72,58 @@ export default function Navbar() {
               RacheLLM
             </span>
           </button>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] ml-1"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation"
+          >
+            <span
+              className="block w-4 h-[1.5px] bg-foreground transition-all duration-200"
+              style={mobileOpen ? { transform: 'rotate(45deg) translateY(3.25px)' } : {}}
+            />
+            <span
+              className="block w-4 h-[1.5px] bg-foreground transition-all duration-200"
+              style={mobileOpen ? { transform: 'rotate(-45deg) translateY(-3.25px)' } : {}}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile nav dropdown */}
+      {mobileOpen && (
+        <nav className="md:hidden flex flex-col gap-4 pt-4 pb-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="group"
+              onClick={() => setMobileOpen(false)}
+            >
+              <h4
+                className={`text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal transition-colors duration-200 ${
+                  pathname === link.href
+                    ? "text-accent"
+                    : "text-foreground-light hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </h4>
+            </Link>
+          ))}
+          <a
+            href="/Rachel_Chen_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileOpen(false)}
+          >
+            <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase tracking-normal text-foreground-light hover:text-foreground transition-colors duration-200">
+              Resume
+            </h4>
+          </a>
+        </nav>
+      )}
     </header>
   );
 }

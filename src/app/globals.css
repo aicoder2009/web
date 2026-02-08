@@ -42,10 +42,25 @@ body * {
   }
 }
 
-/* Serif heading font */
+/* Serif heading font — Libre Baskerville tuned to approximate tiemposText */
 .font-serif {
   font-family: var(--font-serif) !important;
   letter-spacing: -0.02em;
+  font-size-adjust: 0.48;
+}
+
+/* Homepage H1 responsive sizing: 40px mobile, 52px desktop (inline style sets 52px) */
+@media (max-width: 1023px) {
+  h1.hero-h1 {
+    font-size: 40px !important;
+  }
+}
+
+/* Hero grid top padding — fallback in case Tailwind v4 strips lg:pt-[26vh] */
+@media (min-width: 1024px) {
+  .hero-grid {
+    padding-top: 26vh !important;
+  }
 }
 
 /* Link underline hover effect */
@@ -104,9 +119,9 @@ body * {
   animation: fadeInUp 0.6s ease forwards;
 }
 
-.delay-100 { animation-delay: 0.1s; opacity: 0; }
-.delay-200 { animation-delay: 0.2s; opacity: 0; }
-.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.stagger-1 { animation-delay: 0.1s; opacity: 0; }
+.stagger-2 { animation-delay: 0.2s; opacity: 0; }
+.stagger-3 { animation-delay: 0.3s; opacity: 0; }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

@@ -132,7 +132,7 @@ function FunCard({ project }: { project: FunProject }) {
       className="project-card group block transition-all duration-300 ease-in-out !opacity-100"
     >
       <div className="flex flex-col gap-2">
-        <div className="relative w-full border border-foreground/10 overflow-hidden transition-all duration-300 ease-in-out">
+        <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
           <div className="relative w-full">
             {showImage ? (
               <Image
@@ -175,11 +175,11 @@ export default function FunPage() {
       <div className="flex flex-col w-full max-w-[1800px] gap-4">
         {/* Hero */}
         <div className="flex flex-col gap-8 py-8 animate-fade-in">
-          <h1 className="font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: 'clamp(44px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400 }}>
+          <h1 className="font-serif lg:w-1/2 lg:min-w-[640px]" style={{ fontSize: '44px', lineHeight: '48.4px', letterSpacing: '-0.88px', fontWeight: 400 }}>
             I lose sleep to hackathons, design sprints, &amp; silly little side
             quests.
           </h1>
-          <div className="flex flex-col md:flex-row gap-12 lg:w-2/5 lg:min-w-[640px] animate-fade-in delay-100">
+          <div className="flex flex-col md:flex-row gap-12 lg:w-2/5 lg:min-w-[640px] animate-fade-in stagger-1">
             <div className="flex flex-col gap-2">
               <p className="text-[15px] text-foreground-light leading-[1.5]">
                 Design is my passion, but I make time to code cool things and
@@ -208,7 +208,7 @@ export default function FunPage() {
         </div>
 
         {/* 3-Column Project Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full animate-fade-in delay-200">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full animate-fade-in stagger-2">
           <div className="flex flex-col gap-6">
             {col1.map((project, i) => (
               <FunCard key={i} project={project} />

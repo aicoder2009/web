@@ -7,26 +7,28 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const posRef = useRef({ x: -100, y: -100 });
   const hoveringRef = useRef(false);
+  const selectingRef = useRef(false);
   const visibleRef = useRef(false);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const isTouch =
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.innerWidth <= 768;
+      window.matchMedia("(hover: none)").matches ||
+      ("ontouchstart" in window && window.innerWidth <= 768);
     setIsTouchDevice(isTouch);
   }, []);
 
   const updateCursor = useCallback(() => {
     const el = cursorRef.current;
     if (!el) return;
-    const size = hoveringRef.current ? 28 : 16;
+    const active = hoveringRef.current || selectingRef.current;
+    const size = active ? 28 : 16;
     el.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px)`;
     el.style.width = `${size}px`;
     el.style.height = `${size}px`;
     el.style.marginLeft = `${-size / 2}px`;
     el.style.marginTop = `${-size / 2}px`;
-    el.style.opacity = visibleRef.current ? (hoveringRef.current ? "0.6" : "1") : "0";
+    el.style.opacity = visibleRef.current ? (active ? "0.6" : "1") : "0";
   }, []);
 
   useEffect(() => {
@@ -45,9 +47,11 @@ export default function CustomCursor() {
       rafRef.current = requestAnimationFrame(updateCursor);
     };
 
+    const interactiveSelector = "a, button, [role='button'], input, select, textarea, [tabindex], .group";
+
     const onPointerOver = (e: PointerEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("a, button, [role='button']")) {
+      if (target.closest(interactiveSelector)) {
         hoveringRef.current = true;
         cancelAnimationFrame(rafRef.current);
         rafRef.current = requestAnimationFrame(updateCursor);
@@ -56,8 +60,33 @@ export default function CustomCursor() {
 
     const onPointerOut = (e: PointerEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("a, button, [role='button']")) {
+      if (target.closest(interactiveSelector)) {
         hoveringRef.current = false;
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = requestAnimationFrame(updateCursor);
+      }
+    };
+
+    const onMouseDown = () => {
+      selectingRef.current = true;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateCursor);
+    };
+
+    const onMouseUp = () => {
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) {
+        selectingRef.current = false;
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = requestAnimationFrame(updateCursor);
+      }
+    };
+
+    const onSelectionChange = () => {
+      const sel = window.getSelection();
+      const hasSelection = sel ? !sel.isCollapsed : false;
+      if (selectingRef.current !== hasSelection) {
+        selectingRef.current = hasSelection;
         cancelAnimationFrame(rafRef.current);
         rafRef.current = requestAnimationFrame(updateCursor);
       }
@@ -67,12 +96,18 @@ export default function CustomCursor() {
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("pointerover", onPointerOver);
     document.addEventListener("pointerout", onPointerOut);
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("selectionchange", onSelectionChange);
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("pointerover", onPointerOver);
       document.removeEventListener("pointerout", onPointerOut);
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("selectionchange", onSelectionChange);
       cancelAnimationFrame(rafRef.current);
     };
   }, [updateCursor, isTouchDevice]);

@@ -30,7 +30,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-full flex items-center justify-center px-6 py-5 border-t border-foreground/10">
+    <footer className="w-full flex items-center justify-center px-6 border-t border-foreground/10" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
       <div className="flex flex-col md:flex-row w-full items-start md:items-center justify-between gap-6 max-w-[1800px] mx-auto">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <h4 className="text-[15px] font-normal font-[family-name:var(--font-geist-mono)] uppercase text-foreground-light">
@@ -38,7 +38,7 @@ export default function Footer() {
           </h4>
           <button
             ref={heartRef}
-            className="group relative inline-flex items-center justify-center p-1 transition-all duration-200 hover:scale-110 active:scale-95"
+            className="group relative inline-flex items-center justify-center p-0.5 transition-all duration-200 hover:scale-110 active:scale-95"
             aria-label="Like"
             onClick={handleHeartClick}
           >
