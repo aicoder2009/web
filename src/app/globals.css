@@ -6,7 +6,6 @@
   --foreground: #32404f;
   --foreground-light: rgba(50, 64, 79, 0.584);
   --accent: #5B9A6F;
-  --font-serif: 'Libre Baskerville', 'Georgia', serif;
 }
 
 @theme {
@@ -45,7 +44,7 @@ body * {
 
 /* Serif heading font — Libre Baskerville tuned to approximate tiemposText */
 .font-serif {
-  font-family: var(--font-serif) !important;
+  font-family: var(--font-libre-baskerville), 'Georgia', serif !important;
   letter-spacing: -0.02em;
   font-size-adjust: 0.48;
 }

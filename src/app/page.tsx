@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
 import RotatingText from "@/components/RotatingText";
 
 const experiences = [
@@ -129,6 +133,35 @@ const projectsRight: Project[] = [
 ];
 
 function ProjectCard({ project }: { project: Project }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (project.mediaType !== "video") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { rootMargin: "50px" }
+    );
+
+    const currentRef = videoRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [project.mediaType]);
+
   const Wrapper = project.external ? "a" : Link;
   const props = project.external
     ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
@@ -147,20 +180,23 @@ function ProjectCard({ project }: { project: Project }) {
           />
           {project.mediaType === "video" && project.videoSrc ? (
             <video
-              autoPlay
+              ref={videoRef}
+              autoPlay={isVisible}
               loop
               muted
               playsInline
               poster={project.posterSrc}
               className="relative w-full h-full object-cover"
             >
-              <source src={project.videoSrc} type="video/mp4" />
+              {isVisible && <source src={project.videoSrc} type="video/mp4" />}
             </video>
           ) : (
-            <img
+            <Image
               src={project.posterSrc}
               alt={project.title}
-              className="relative w-full h-full object-cover"
+              fill
+              className="relative object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 900px"
             />
           )}
           {/* Colored tint overlay (per-project) */}

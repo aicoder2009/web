@@ -10,6 +10,14 @@ import ChainOfThought from "./ChainOfThought";
 
 const MAX_INPUT_CHARS = 1333; // ~333 tokens
 
+const WELCOME_MESSAGES = [
+  "Hey, ask away.",
+  "Hey there, I'm ArunLM.",
+  "Ask me anything.",
+  "What would you like to know?",
+  "Welcome to ArunLM.",
+];
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -36,21 +44,13 @@ export default function ChatSidebar() {
     inputRef,
   } = useChat();
 
-  const welcomeMessages = [
-    "Hey, ask away.",
-    "Hey there, I'm ArunLM.",
-    "Ask me anything.",
-    "What would you like to know?",
-    "Welcome to ArunLM.",
-  ];
-
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [dailyLimitReached, setDailyLimitReached] = useState(false);
   const [welcomeHeading, setWelcomeHeading] = useState(
-    () => welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]
+    () => WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)]
   );
   const [responseId, setResponseId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -92,9 +92,9 @@ export default function ChatSidebar() {
     setResponseId(null);
     setSuggestions(getSuggestions(pageContext));
     setWelcomeHeading(
-      welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]
+      WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)]
     );
-  }, [pageContext, setSelectedText, welcomeMessages]);
+  }, [pageContext, setSelectedText]);
 
   const sendMessage = useCallback(
     async (content: string, quotedText?: string) => {

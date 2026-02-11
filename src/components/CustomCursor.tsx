@@ -96,11 +96,19 @@ export default function CustomCursor() {
   useEffect(() => {
     if (isTouchDevice) return;
 
+    let ticking = false;
+
     const onMouseMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY };
       visibleRef.current = true;
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(updateCursor);
+      
+      if (!ticking) {
+        ticking = true;
+        rafRef.current = requestAnimationFrame(() => {
+          updateCursor();
+          ticking = false;
+        });
+      }
     };
 
     const onMouseLeave = () => {

@@ -49,18 +49,20 @@ export default function ChatProvider({ children }: { children: ReactNode }) {
 
   const toggleChat = useCallback(() => {
     setIsChatOpen((prev) => {
-      if (prev) {
-        // Already open — focus the input instead of closing
-        setTimeout(() => inputRef.current?.focus(), 0);
-        return true;
+      if (!prev) {
+        // Opening chat — focus input after transition
+        setTimeout(() => inputRef.current?.focus(), 300);
       }
-      return true;
+      return !prev;
     });
   }, []);
 
   // Lock body scroll on mobile when chat is open
   useEffect(() => {
-    if (isChatOpen && window.innerWidth < 768) {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const isMobile = mediaQuery.matches;
+    
+    if (isChatOpen && isMobile) {
       document.body.classList.add("chat-open");
     } else {
       document.body.classList.remove("chat-open");
