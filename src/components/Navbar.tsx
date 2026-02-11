@@ -13,6 +13,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Work" },
     { href: "/fun", label: "Fun" },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/resume.pdf", label: "Resume", external: true },
   ];
