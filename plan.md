@@ -1,41 +1,36 @@
-# Implementation Plan - Writing/Journal Section
+# Implementation Plan - Press Page
 
 ## Goal
-Add a new section to the portfolio (provisionally called "Writing" or "Journal") that lists posts/updates.
-The design should mimic Anthropic's "Press" page: a grid of cards showing a headline image and title.
+Add a "Press" page to the portfolio, styled similarly to Anthropic's press page (headline image + title), to showcase media coverage.
 
 ## Proposed Changes
 
-### 1. Data Structure (`src/data/writing.ts`)
-- Define `WritingPost` type:
+### 1. Data Structure (`src/data/press.ts`)
+- Define `PressItem` type:
   - `title`: string
+  - `publisher`: string
   - `date`: string
-  - `category`: string (e.g. "Announcements", "Thoughts")
-  - `slug`: string
-  - `imageSrc`: string (Hero image)
-  - `excerpt`: string (optional)
-- Create sample data (placeholder posts).
+  - `url`: string
+  - `imageSrc`: string (hero image)
+- Create sample data.
 
-### 2. UI Implementation (`src/app/writing/page.tsx`)
-- Create a new page route `/writing`.
-- **Layout**:
-  - Header: Title ("Writing" or similar) + Description.
-  - Grid: 2 columns on desktop, 1 on mobile.
-- **Card Design** (Anthropic Style):
-  - Top: Image (AspectRatio 16:9 or 3:2).
-  - Bottom:
-    - Date | Category (Small mono text).
-    - Title (Large Serif text).
-    - (Optional) Short excerpt.
+### 2. UI Implementation (`src/app/press/page.tsx`)
+- Create a new page route `/press`.
+- Use a grid layout (similar to existing Projects grid).
+- Cards will feature:
+  - Top: 16/9 aspect ratio image.
+  - Bottom: Title (serif), Publisher & Date (mono).
+- Responsive design (1 col mobile, 2/3 cols desktop).
 
 ### 3. Navigation (`src/components/Navbar.tsx`)
-- Add the new section to `navLinks`.
+- Add "Press" to `navLinks`.
 
-## Questions for User
-- **Name**: "Writing", "Journal", "Notes", or "Log"?
-- **Content**: Just the list page for now? Or do you need the detail pages (`/writing/[slug]`) too?
+## Brainstorming / To Decide
+- **Content Source**: Manual file (current plan) vs CMS.
+- **Card Details**: Add excerpts? Tags?
+- **Animations**: Re-use `ProjectCard` hover effects?
 
 ## Workplan
-- [ ] Create `src/data/writing.ts`
-- [ ] Create `src/app/writing/page.tsx`
+- [ ] Create `src/data/press.ts`
+- [ ] Create `src/app/press/page.tsx`
 - [ ] Update `src/components/Navbar.tsx`
