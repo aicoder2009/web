@@ -6,7 +6,7 @@ import { BlogPost } from "@/types/blog";
 
 function BlogCard({ post }: { post: BlogPost }) {
   const [imgError, setImgError] = useState(false);
-  const showImage = post.imageSrc && !imgError;
+  const showImage = post.coverImage && !imgError;
 
   return (
     <Link
@@ -17,7 +17,7 @@ function BlogCard({ post }: { post: BlogPost }) {
       <div className="relative w-full aspect-[16/9] overflow-hidden rounded-sm">
         {showImage ? (
           <img
-            src={post.imageSrc}
+            src={post.coverImage}
             alt={post.title}
             className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
             onError={() => setImgError(true)}
