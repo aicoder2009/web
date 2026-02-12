@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { blogPosts, BlogPost } from "@/data/blog";
+import { useState, useEffect } from "react";
+import { BlogPost } from "@/types/blog";
 
 function BlogCard({ post }: { post: BlogPost }) {
   const [imgError, setImgError] = useState(false);
-  const showImage = post.imageSrc && !imgError;
+  const showImage = post.coverImage && !imgError;
 
   return (
     <Link
@@ -17,7 +17,7 @@ function BlogCard({ post }: { post: BlogPost }) {
       <div className="relative w-full aspect-[16/9] overflow-hidden rounded-sm">
         {showImage ? (
           <img
-            src={post.imageSrc}
+            src={post.coverImage}
             alt={post.title}
             className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
             onError={() => setImgError(true)}
@@ -54,6 +54,22 @@ function BlogCard({ post }: { post: BlogPost }) {
 }
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/blog")
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading blog posts:", error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="flex flex-col p-6 w-full items-center gap-12 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col w-full max-w-[1800px] gap-12 py-8">
@@ -69,11 +85,17 @@ export default function BlogPage() {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 animate-fade-in stagger-1">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center text-foreground-light">Loading posts...</div>
+        ) : posts.length === 0 ? (
+          <div className="text-center text-foreground-light">No blog posts yet. Check back soon!</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 animate-fade-in stagger-1">
+            {posts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
+          </div>
+        )}
 
       </div>
     </div>

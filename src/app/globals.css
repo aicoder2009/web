@@ -410,3 +410,88 @@ body.chat-open {
   font-family: var(--font-geist-mono);
   white-space: nowrap;
 }
+
+/* ========================================
+   Blog Post & MDX Styling
+   ======================================== */
+
+/* Code block styling */
+.prose pre {
+  background-color: #1e1e1e !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  overflow-x: auto !important;
+  margin: 1.5rem 0 !important;
+}
+
+.prose pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  color: #d4d4d4 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* Syntax highlighting theme (VS Code Dark+) */
+.hljs-keyword { color: #569cd6 !important; }
+.hljs-string { color: #ce9178 !important; }
+.hljs-comment { color: #6a9955 !important; font-style: italic !important; }
+.hljs-function { color: #dcdcaa !important; }
+.hljs-number { color: #b5cea8 !important; }
+.hljs-attr { color: #9cdcfe !important; }
+.hljs-tag { color: #569cd6 !important; }
+.hljs-built_in { color: #4ec9b0 !important; }
+.hljs-params { color: #9cdcfe !important; }
+.hljs-variable { color: #9cdcfe !important; }
+.hljs-title { color: #dcdcaa !important; }
+.hljs-class { color: #4ec9b0 !important; }
+.hljs-type { color: #4ec9b0 !important; }
+.hljs-selector-tag { color: #d7ba7d !important; }
+.hljs-selector-class { color: #d7ba7d !important; }
+.hljs-selector-id { color: #d7ba7d !important; }
+.hljs-meta { color: #569cd6 !important; }
+
+/* Prose typography customization for blog posts */
+.prose {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.prose h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  border-left-width: 4px;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.prose img {
+  border-radius: 8px;
+  margin: 2rem 0;
+}
