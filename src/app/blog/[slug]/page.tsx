@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
@@ -42,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Article Header */}
         <header className="flex flex-col gap-4 max-w-[720px] mx-auto w-full">
-          <h1 className="text-[42px] md:text-[52px] font-serif text-foreground font-normal leading-[1.1]">
+          <h1 className="text-[42px] md:text-[52px] font-serif text-foreground font-normal leading-[1.1] letter-spacing-[-0.02em]">
             {post.title}
           </h1>
 
@@ -67,7 +68,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </header>
 
         {/* Article Content */}
-        <article className="prose prose-lg max-w-[720px] mx-auto w-full prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground-light prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm prose-code:before:content-none prose-code:after:content-none prose-strong:text-foreground prose-blockquote:text-foreground-light prose-blockquote:border-accent">
+        <article className="prose prose-lg max-w-[720px] mx-auto w-full prose-headings:font-serif prose-headings:text-foreground prose-h1:hidden prose-p:text-foreground-light prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm prose-code:before:content-none prose-code:after:content-none prose-strong:text-foreground prose-blockquote:text-foreground-light prose-blockquote:border-accent">
           <MDXRemote
             source={post.content}
             options={{
