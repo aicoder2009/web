@@ -4,7 +4,6 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
@@ -43,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Article Header */}
         <header className="flex flex-col gap-4 max-w-[720px] mx-auto w-full">
-          <h1 className="text-[42px] md:text-[52px] font-serif text-foreground font-normal leading-[1.1] letter-spacing-[-0.02em]">
+          <h1 className="text-[42px] md:text-[52px] font-serif text-foreground font-normal leading-[1.1]">
             {post.title}
           </h1>
 
