@@ -32,6 +32,21 @@ const suggestions: Record<string, string[]> = {
     "How does this project work?",
     "Is this project open source?",
   ],
+  blog: [
+    "What topics does Karthick write about?",
+    "Show me articles about AI",
+    "What's the most recent blog post?",
+    "Summarize Karthick's blog posts",
+    "What has Karthick written about entrepreneurship?",
+    "Tell me about Karthick's writing",
+  ],
+  blogPost: [
+    "Summarize this article",
+    "What are the key takeaways?",
+    "Explain this concept in simpler terms",
+    "What are related topics to this post?",
+    "Tell me more about this topic",
+  ],
 };
 
 export function getSuggestions(
