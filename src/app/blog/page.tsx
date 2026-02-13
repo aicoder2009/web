@@ -86,7 +86,14 @@ export default function BlogPage() {
 
         {/* Blog Grid */}
         {loading ? (
-          <div className="text-center text-foreground-light">Loading posts...</div>
+          <div className="flex flex-col items-center justify-center gap-4 py-12 animate-fade-in">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '300ms' }}></div>
+            </div>
+            <p className="text-[15px] text-foreground-light">Loading posts...</p>
+          </div>
         ) : posts.length === 0 ? (
           <div className="text-center text-foreground-light">No blog posts yet. Check back soon!</div>
         ) : (
