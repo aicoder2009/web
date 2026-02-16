@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   title: "Karthick Arun | Entrepreneur + Engineer",
   description:
     "I'm Karthick — an entrepreneur who designs, ships, and markets.",
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
   openGraph: {
     title: "Karthick Arun | Entrepreneur + Engineer",
     description: "I'm Karthick — an entrepreneur who designs, ships, and markets.",
@@ -49,7 +54,7 @@ export default function RootLayout({
         <CustomCursor />
         <ChatProvider>
           <div className="flex h-[100dvh] overflow-hidden">
-            <div className="flex-1 flex flex-col overflow-y-auto transition-all duration-200">
+            <div className="flex-1 flex flex-col overflow-y-auto transition-all duration-200" data-scroll-container>
               <Navbar />
               <main className="flex-1">
                 <ViewTransition>{children}</ViewTransition>

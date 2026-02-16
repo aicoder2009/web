@@ -33,16 +33,22 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           
           <div className="flex items-center gap-2 text-[13px] font-mono text-foreground-light">
             <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric' 
+              {new Date(post.date).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
               })}
             </time>
             <span>•</span>
             <span>{post.readingTime} min read</span>
           </div>
-          
+
+          {post.category && (
+            <span className="px-2 py-0.5 text-[11px] font-mono uppercase bg-foreground/5 text-foreground-light rounded-sm w-fit">
+              {post.category}
+            </span>
+          )}
+
           <p className="text-[15px] text-foreground-light line-clamp-2">
             {post.description}
           </p>

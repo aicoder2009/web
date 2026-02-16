@@ -62,6 +62,38 @@ export async function getBlogPostBySlug(
   return posts.find((post) => post.slug === slug) || null;
 }
 
+export async function getAdjacentPosts(
+  slug: string
+): Promise<{ previous: BlogPost | null; next: BlogPost | null }> {
+  const posts = await getAllBlogPosts();
+  const index = posts.findIndex((p) => p.slug === slug);
+  if (index === -1) return { previous: null, next: null };
+
+  return {
+    previous: index < posts.length - 1 ? posts[index + 1] : null,
+    next: index > 0 ? posts[index - 1] : null,
+  };
+}
+
+export async function getRelatedPosts(
+  slug: string,
+  tags: string[],
+  limit = 3
+): Promise<BlogPost[]> {
+  const posts = await getAllBlogPosts();
+  const otherPosts = posts.filter((p) => p.slug !== slug);
+
+  if (tags.length === 0) return otherPosts.slice(0, limit);
+
+  const scored = otherPosts.map((post) => {
+    const overlap = post.tags.filter((t) => tags.includes(t)).length;
+    return { post, score: overlap };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit).map((s) => s.post);
+}
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
