@@ -7,7 +7,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { ChevronDown, Lightbulb, Wrench, Rocket } from "lucide-react";
+import { ChevronDown, Brain, Lightbulb, MessageSquare } from "lucide-react";
 import TextShimmer from "./TextShimmer";
 
 /* ── Reasoning compound component (prompt-kit) ─────────────────── */
@@ -108,9 +108,9 @@ function ReasoningContent({ children }: { children: React.ReactNode }) {
 /* ── Chain of thought steps (prompt-kit pattern) ───────────────── */
 
 const STEPS = [
-  { icon: Lightbulb, label: "Spark of an idea…" },
-  { icon: Wrench, label: "Tinkering with the prototype…" },
-  { icon: Rocket, label: "Ready for launch…" },
+  { icon: Brain, label: "Thinking it through…" },
+  { icon: Lightbulb, label: "Connecting the dots…" },
+  { icon: MessageSquare, label: "Writing a response…" },
 ];
 
 function ChainOfThoughtSteps({ isVisible }: { isVisible: boolean }) {
