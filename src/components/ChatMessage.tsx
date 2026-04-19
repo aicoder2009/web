@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import { Copy, Check, ChevronDown, ThumbsUp, ThumbsDown } from "lucide-react";
+
+const ARUNLM_CONTACT_PAYLOADS: Record<string, string> = {
+  "contact-work": "Please share Karthick's work email.",
+  "contact-team": "Please share the Setu Labs team/business email.",
+  "contact-personal": "Please share Karthick's personal email.",
+};
 
 const USER_MSG_TRUNCATE = 200; // characters before truncation kicks in
 
@@ -101,11 +108,40 @@ export default function ChatMessage({
     onFeedback?.(newValue);
   };
 
+  const markdownComponents: Components = {
+    a({ href, children, ...rest }) {
+      if (typeof href === "string" && href.startsWith("arunlm:")) {
+        const key = href.slice("arunlm:".length);
+        const payload = ARUNLM_CONTACT_PAYLOADS[key] ?? String(children);
+        return (
+          <button
+            type="button"
+            onClick={() => onSuggestionClick?.(payload)}
+            className="arunlm-pill"
+          >
+            {children}
+          </button>
+        );
+      }
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+          {children}
+        </a>
+      );
+    },
+  };
+
   return (
     <div className="flex flex-col items-start chat-msg-fade-in group/msg">
       <div className="max-w-[320px] text-foreground overflow-hidden">
-        <div className="text-sm py-4 prose prose-sm max-w-none break-words prose-p:my-2 prose-p:leading-relaxed prose-strong:text-current prose-em:text-current prose-code:text-current prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-ul:my-2 prose-li:my-1 text-current">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        <div className="text-sm py-4 chat-markdown prose prose-sm max-w-none break-words prose-p:my-2 prose-p:leading-relaxed prose-strong:text-current prose-em:text-current prose-code:text-current prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-ul:my-2 prose-li:my-1 text-current">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+            components={markdownComponents}
+          >
+            {content}
+          </ReactMarkdown>
           {isStreaming && <span className="streaming-cursor" />}
         </div>
         {!isStreaming && content && (

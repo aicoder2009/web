@@ -159,12 +159,37 @@ function ChainOfThoughtSteps({ isVisible }: { isVisible: boolean }) {
 
 /* ── Exported ChainOfThought ───────────────────────────────────── */
 
+const STEPS_DELAY_MS = 2500;
+
 export default function ChainOfThought({
   isVisible,
 }: {
   isVisible: boolean;
 }) {
+  const [showSteps, setShowSteps] = useState(false);
+
+  useEffect(() => {
+    if (!isVisible) {
+      setShowSteps(false);
+      return;
+    }
+    const timer = setTimeout(() => setShowSteps(true), STEPS_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [isVisible]);
+
   if (!isVisible) return null;
+
+  if (!showSteps) {
+    return (
+      <div className="py-2">
+        <span className="flex items-center gap-2 text-foreground/50">
+          <TextShimmer duration={2} spread={25} className="text-xs">
+            Thinking…
+          </TextShimmer>
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div className="py-2">
@@ -175,7 +200,7 @@ export default function ChainOfThought({
           </TextShimmer>
         </ReasoningTrigger>
         <ReasoningContent>
-          <ChainOfThoughtSteps isVisible={isVisible} />
+          <ChainOfThoughtSteps isVisible={showSteps} />
         </ReasoningContent>
       </Reasoning>
     </div>

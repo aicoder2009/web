@@ -10,6 +10,13 @@ const suggestions: Record<string, string[]> = {
     "Tell me about KidCon",
     "Tell me about Karthick's AWS keynote",
     "What leadership roles does Karthick have?",
+    "How did Karthick get his AWS cert at age 9?",
+    "Why did Aigenie rebrand to Setu Labs?",
+    "What makes Lucky different from other screen readers?",
+    "What's Karthick currently working on?",
+    "What's the most interesting project Karthick's shipped?",
+    "Who are Karthick's role models?",
+    "What does Karthick do outside of tech?",
   ],
   about: [
     "What are Karthick's interests?",
@@ -18,6 +25,12 @@ const suggestions: Record<string, string[]> = {
     "Tell me about Karthick's achievements",
     "What's Karthick's education?",
     "What's Setu Labs' mission?",
+    "What sparked Karthick's interest in AI?",
+    "Tell me about Karthick's family background",
+    "What hobbies does Karthick have now?",
+    "What was Karthick's first coding project?",
+    "What's a fun fact about Karthick?",
+    "Who inspires Karthick?",
   ],
   fun: [
     "Tell me about Karthick's side projects",
@@ -26,6 +39,12 @@ const suggestions: Record<string, string[]> = {
     "What is DotClock?",
     "Tell me about Linguarush",
     "What is Jerry?",
+    "What is OpenCitation?",
+    "Tell me about awsbreak",
+    "Which side projects are still in progress?",
+    "What's Karthick's favorite side project?",
+    "Which projects are open source?",
+    "What tech stack does Karthick reach for first?",
   ],
   project: [
     "Tell me more about this project",
@@ -33,6 +52,9 @@ const suggestions: Record<string, string[]> = {
     "What inspired this project?",
     "How does this project work?",
     "Is this project open source?",
+    "What was the hardest part of building this?",
+    "What did Karthick learn from this project?",
+    "What's next for this project?",
   ],
   blog: [
     "What topics does Karthick write about?",
@@ -41,6 +63,9 @@ const suggestions: Record<string, string[]> = {
     "Summarize Karthick's blog posts",
     "What has Karthick written about entrepreneurship?",
     "Tell me about Karthick's writing",
+    "Any posts about accessibility?",
+    "Any posts about cloud or AWS?",
+    "What's Karthick's writing style like?",
   ],
   blogPost: [
     "Summarize this article",
@@ -48,6 +73,8 @@ const suggestions: Record<string, string[]> = {
     "Explain this concept in simpler terms",
     "What are related topics to this post?",
     "Tell me more about this topic",
+    "What inspired this post?",
+    "Are there related posts I should read next?",
   ],
 };
 

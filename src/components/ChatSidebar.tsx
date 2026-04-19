@@ -16,6 +16,16 @@ const WELCOME_MESSAGES = [
   "Ask me anything.",
   "What would you like to know?",
   "Welcome to ArunLM.",
+  "Hi — curious about Karthick? Fire away.",
+  "Good to see you. What's on your mind?",
+  "Hey! Got a question about the work?",
+  "Ready when you are.",
+  "Ask me about projects, Setu Labs, or anything in between.",
+  "Hi there. What can I dig up for you?",
+  "Hey — pick anything from the portfolio.",
+  "Welcome. Ask me about Karthick's work.",
+  "Hey, let's chat.",
+  "Hi! Curious about a project? Let's dive in.",
 ];
 
 interface Message {
