@@ -158,12 +158,12 @@ export default function FunPage() {
               <p className="text-[15px] text-foreground-light leading-[1.5]">
                 When I&apos;m not building{" "}
                 <a
-                  href="https://aigenie.biz"
+                  href="https://setulabs.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground underline underline-offset-4"
                 >
-                  Aigenie
+                  Setu Labs
                 </a>
                 , I&apos;m hacking on side projects, contributing to open source,
                 and exploring AI at every layer of the stack. Currently playing

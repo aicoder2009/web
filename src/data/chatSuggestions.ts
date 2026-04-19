@@ -1,13 +1,15 @@
 const suggestions: Record<string, string[]> = {
   home: [
     "What projects has Karthick built?",
-    "Tell me about Aigenie",
+    "Tell me about Setu Labs",
     "What is Lucky?",
     "What's Karthick's background?",
     "What tech stack does Karthick use?",
     "How can I contact Karthick?",
     "What certifications does Karthick have?",
     "Tell me about KidCon",
+    "Tell me about Karthick's AWS keynote",
+    "What leadership roles does Karthick have?",
   ],
   about: [
     "What are Karthick's interests?",
@@ -15,7 +17,7 @@ const suggestions: Record<string, string[]> = {
     "What certifications does Karthick have?",
     "Tell me about Karthick's achievements",
     "What's Karthick's education?",
-    "What's Aigenie's mission?",
+    "What's Setu Labs' mission?",
   ],
   fun: [
     "Tell me about Karthick's side projects",
@@ -73,15 +75,60 @@ export function getSuggestions(
 }
 
 const keywordSuggestions: Record<string, string[]> = {
+  "setu labs": [
+    "What's Setu Labs' mission?",
+    "Tell me about Setu Labs",
+    "What does Setu Labs build?",
+  ],
+  setu: [
+    "What's Setu Labs' mission?",
+    "Tell me about Setu Labs",
+    "What does Setu Labs build?",
+  ],
   aigenie: [
-    "What's Aigenie's mission?",
-    "Tell me about Aigenie Enterprises",
-    "What does Aigenie build?",
+    "Why did Aigenie rebrand to Setu Labs?",
+    "What does Setu Labs build now?",
+    "Is Ktutor still active?",
+  ],
+  ktutor: [
+    "Why was Ktutor sunset?",
+    "What is Setu Labs building now?",
+    "Tell me about Lucky",
   ],
   lucky: [
     "What is Lucky?",
-    "How does Lucky work?",
-    "What accessibility features does Lucky have?",
+    "Is Lucky available yet?",
+    "Where can I learn more about Lucky?",
+  ],
+  accessibility: [
+    "What is Lucky?",
+    "What's Setu Labs' mission?",
+    "How does Setu Labs think about accessibility?",
+  ],
+  keynote: [
+    "Tell me about the AWS Public Sector Summit keynote",
+    "How did Karthick get the keynote slot?",
+    "What was the keynote about?",
+  ],
+  nhs: [
+    "What leadership roles does Karthick have?",
+    "Tell me about Karthick's volunteer work",
+    "What's the Blood Drive Coordinator role?",
+  ],
+  myac: [
+    "What is MYAC?",
+    "Tell me about Karthick's Youth Council role",
+    "What community work does Karthick do?",
+  ],
+  devops: [
+    "Tell me about the Basha DevOps Club",
+    "What does Karthick do as VP?",
+    "What's Karthick rebuilding at the DevOps Club?",
+  ],
+  infotruster: [
+    "What is Infotruster?",
+    "Tell me about Leangap",
+    "How did Karthick win Most Outstanding Company?",
   ],
   kidcon: [
     "What was KidCon?",

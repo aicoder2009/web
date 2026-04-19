@@ -1,616 +1,400 @@
 import type { ProjectData } from "@/components/ProjectLayout";
 
-export const openaiProject: ProjectData = {
-  title: "The future of AI & hardware",
-  subtitle: "OpenAI x Hardware • Concept 2025",
+export const setuLabsProject: ProjectData = {
+  title: "AI tools that remove barriers",
+  subtitle: "Setu Labs \u2022 Building 2022\u2013Now",
   heroMedia: {
-    type: "video",
-    src: "/projects/openai/openai.mp4",
-    poster: "/projects/openai/openai.png",
+    type: "image",
+    src: "/projects/setu-labs/hero.png",
+    alt: "Setu Labs",
   },
   metadata: [
-    { label: "Role", value: "Product Designer" },
-    { label: "Timeline", value: "August - September 2025" },
-    { label: "Team", value: "3 Designers" },
-    { label: "Skills", value: "Product Design, Product Strategy, Prototyping" },
+    { label: "Role", value: "Founder & CEO" },
+    { label: "Timeline", value: "2022 \u2014 Present" },
+    { label: "Current Product", value: "Lucky (beta)" },
+    { label: "Skills", value: "Product, Engineering, Business" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "As a team of 3 product designers, our goal was to land on a clear vision within 7 weeks.",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/1-problem.svg", alt: "Problem diagram" },
+        "Setu Labs is the AI company I founded (originally as Aigenie Enterprises) to build tools that remove barriers so people of all abilities can reach their full potential.",
+        "Our current focus is Lucky \u2014 an AI-powered accessibility product \u2014 available in beta at lucky.setulabs.ai.",
       ],
     },
     {
-      id: "solution",
-      title: "Solution",
+      id: "mission",
+      title: "Mission",
       content: [
-        "A pin and pendant wearable, serving as a camera and microphone on-the-go.",
-        "Moments is a new atomic unit in ChatGPT, logging all the events, conversations, and solo adventures captured with Tomo.",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/2-tomo.png", alt: "Tomo device" },
-        { type: "video", src: "/projects/openai/moments.mp4" },
+        "Making the world more accessible and equitable with technology that understands you. That line isn\u2019t marketing \u2014 it\u2019s the filter I run every product decision through.",
+        "I\u2019ve felt the wrong side of access gaps myself: at nine, I had to convince the CEO of AWS I was ready to sit their certification exam because no one expected a kid to want it. Age, background, and ability shouldn\u2019t decide who gets to use the internet, learn a skill, or participate in the future we\u2019re building.",
       ],
     },
     {
-      id: "core-flows",
-      title: "Core Flows",
+      id: "lucky",
+      title: "Lucky",
       content: [
-        "Smart prompts, in-the-moment — Get prompts relevant to you in-the-moment, with Tomo.",
-        "Chat with real-time context — ChatGPT can now respond to you with understanding of your real life.",
-        "Look back on your moments — In the new Moments page, you can look back on everything that\u2019s happened, categorized by context.",
-        "Review a specific moment — Tap into each moment to see all the important things that happened.",
-        "Onboarding to Tomo — Designing for an experience that will show users how Moments work and the immediate value of Tomo.",
-      ],
-      media: [
-        { type: "video", src: "/projects/openai/cf-smart-prompt.mp4" },
-        { type: "video", src: "/projects/openai/cf-chat-context.mp4" },
-        { type: "video", src: "/projects/openai/cf-moments.mp4" },
-        { type: "video", src: "/projects/openai/cf-apartmoment.mp4" },
-        { type: "video", src: "/projects/openai/onboarding.mp4" },
+        "Lucky is Setu Labs\u2019 current product \u2014 an AI-powered accessibility app designed to help people navigate the web more easily. It\u2019s in beta; you can follow progress at lucky.setulabs.ai.",
+        "The core bet: accessibility is an AI problem now. Models that can see, read, and reason in real time make it possible to build software that adapts to the user instead of forcing the user to adapt to the software.",
       ],
     },
     {
-      id: "research",
-      title: "Research",
+      id: "evolution",
+      title: "How We Got Here",
       content: [
-        "We went deep into understanding OpenAI, and the world of consumer AI, agents, trends, and more. We researched existing devices and tried some out ourselves!",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/4-ai-rabbit-hole.png", alt: "AI research" },
+        "Setu Labs started in 2022 as Aigenie Enterprises, focused on AI in education. We shipped Ktutor, an AI tutoring product built around digital avatar teachers. Ktutor taught us what the technology could and couldn\u2019t carry \u2014 and where the bigger barrier-removal opportunity actually lived.",
+        "We sunset Ktutor, rebranded to Setu Labs, and refocused the company on accessibility. Same mission, sharper target.",
       ],
     },
     {
-      id: "exploring-form-factors",
-      title: "Exploring Form Factors",
+      id: "team-mentorship",
+      title: "Team & Mentorship",
       content: [
-        "We explored product direction and form factor, and designed for an experience that will show users how Moments work and the immediate value of Tomo.",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/5-form-factor.png", alt: "Form factor exploration" },
-        { type: "image", src: "/projects/openai/7-why-tomo.png", alt: "Why Tomo" },
-      ],
-    },
-    {
-      id: "prototyping-and-testing",
-      title: "Prototyping and Testing",
-      content: [
-        "We explored a ton of concepts for these 3 strategic directions, here are select few of them:",
-        "Testing and iterating with feedback! We got users to try these prototypes, observed how they used them, how they felt, and got tons of valuable feedback.",
-      ],
-      media: [
-        { type: "video", src: "/projects/openai/exp1-prompt.mp4" },
-        { type: "video", src: "/projects/openai/exp2-bg-mode.mp4" },
-        { type: "video", src: "/projects/openai/exp3-decons-ar.mp4" },
-        { type: "video", src: "/projects/openai/exp4-transcript.mp4" },
-        { type: "video", src: "/projects/openai/exp5-stories.mp4" },
-        { type: "video", src: "/projects/openai/exp6-timeline.mp4" },
-        { type: "video", src: "/projects/openai/user-testing.mp4" },
-      ],
-    },
-    {
-      id: "design-decisions",
-      title: "Design Decisions",
-      content: [
-        "We identified the most intuitive way to bring this feature to life.",
-        "With insights and iteration from prototyping and testing, we got to thinking how a clear, intuitive solution could be integrated within the existing ChatGPT ecosystem.",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/systems-thinking.svg", alt: "Systems thinking" },
-        { type: "video", src: "/projects/openai/ins-chat-context.mp4" },
-        { type: "image", src: "/projects/openai/ins-moment-page.png", alt: "Moments page" },
-        { type: "image", src: "/projects/openai/ins-prompt.png", alt: "Smart prompts" },
-        { type: "video", src: "/projects/openai/ins-moment-prompt.mp4" },
-      ],
-    },
-    {
-      id: "designing-for-hardware-constraints",
-      title: "Designing for Hardware Constraints",
-      content: [
-        "A device that is light-weight and always-recording isn\u2019t possible, yet.",
-        "We researched a bunch of products and found that high-quality camera recording doesn\u2019t last more than a few hours.",
-        "How do we maximize memory despite constraints of camera battery life?",
-      ],
-      media: [
-        { type: "image", src: "/projects/openai/research-devices.png", alt: "Device research" },
-        { type: "image", src: "/projects/openai/context-based.png", alt: "Context-based capture" },
-        { type: "image", src: "/projects/openai/cons-1.png", alt: "Consideration 1" },
-        { type: "image", src: "/projects/openai/cons-2.png", alt: "Consideration 2" },
-        { type: "image", src: "/projects/openai/manual-capture.png", alt: "Manual capture" },
-        { type: "image", src: "/projects/openai/cons-3.png", alt: "Consideration 3" },
-        { type: "image", src: "/projects/openai/cons-4.png", alt: "Consideration 4" },
-        { type: "image", src: "/projects/openai/cons-5.png", alt: "Consideration 5" },
-        { type: "image", src: "/projects/openai/memory-vs-privacy.png", alt: "Memory vs privacy" },
+        "As part of Setu Labs\u2019 mission, I serve as the industry partner for a summer internship program at El Segundo High School in California. Last summer I mentored four high school interns, developed curricula, and coordinated with school staff and tech professionals so students walked out with real AI and cloud experience on their r\u00e9sum\u00e9.",
       ],
     },
     {
       id: "reflection",
       title: "Reflection",
       content: [
-        "Social signals matter. We can\u2019t design just for the user, but also for those who will be around them and perceive them. What does Tomo imply for social settings? How can we design hardware for self-expression?",
-        "Think in systems. It\u2019s not just about designing an amazing feature, but how it fits into the existing system, and how it fits into users\u2019 mental models.",
+        "The hardest part of building Setu Labs hasn\u2019t been the technology \u2014 it\u2019s been the discipline of saying what we\u2019re not. Sunsetting Ktutor was a hard call. Staying the course would have been easier than admitting a sharper bet was in front of us.",
+        "What keeps me building: every person I meet who\u2019s been locked out of a product because it wasn\u2019t built with them in mind. That\u2019s the gap Lucky \u2014 and Setu Labs \u2014 exists to close.",
       ],
     },
   ],
 };
 
-export const alexaProject: ProjectData = {
-  title: "Novel consumer AI experiences",
-  subtitle: "Amazon Alexa+ \u2022 Contract 2025",
+export const kidconProject: ProjectData = {
+  title: "The first cloud conference built for kids",
+  subtitle: "KidCon 2021 \u2022 Shipped 2021",
   heroMedia: {
-    type: "video",
-    src: "/projects/alexa/alexa.mp4",
-    poster: "/projects/alexa/alexa.png",
+    type: "image",
+    src: "/projects/kidcon/hero.png",
+    alt: "KidCon 2021",
   },
   metadata: [
-    { label: "Role", value: "Product Designer & Engineer" },
-    { label: "Timeline", value: "November 2025 - Present" },
-    { label: "Team", value: "Dean Dijour, Michael Kim" },
-    { label: "Skills", value: "Product Strategy, Product Design, Prototyping" },
+    { label: "Role", value: "Organizer & Host" },
+    { label: "Year", value: "2021" },
+    { label: "Audience", value: "Young learners in cloud" },
+    { label: "Skills", value: "Event Production, Outreach, Community" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "As part of a small team, I am actively engaged with Amazon to imagine the future of consumer AI with Alexa+. Our work is exploratory, consisting of research, strategy, design, and engineering.",
-        "This project is confidential, reach out to me directly to learn more!",
-      ],
-    },
-  ],
-};
-
-export const figmaProject: ProjectData = {
-  title: "Mobile-first for Figma",
-  subtitle: "Figma \u2022 Concept 2025",
-  heroMedia: {
-    type: "video",
-    src: "/projects/figma/figma.mp4",
-    poster: "/projects/figma/figma.png",
-  },
-  metadata: [
-    { label: "Role", value: "Product Designer" },
-    { label: "Timeline", value: "October 2025" },
-    { label: "Team", value: "Emmi Wu, Christina Raganit, Angelina Cao" },
-    { label: "Skills", value: "Product Design, User Research, Prototyping" },
-  ],
-  sections: [
-    {
-      id: "challenge",
-      title: "Challenge",
-      content: [
-        "We were 4 designers with 6 days to tackle this design challenge.",
-      ],
-      media: [
-        { type: "image", src: "/projects/figma/challenge.png", alt: "Design challenge" },
+        "KidCon 2021 was a cloud computing conference designed for young people \u2014 a direct response to the age restrictions that kept kids out of industry events like AWS re:Invent.",
+        "As president of the Kids Cloud Club, I organized the event, recruited industry experts and leading analysts as speakers, and built the program around curiosity rather than credentials.",
       ],
     },
     {
-      id: "problem",
-      title: "Problem",
+      id: "why",
+      title: "Why I Built It",
       content: [
-        "Designers rely on constant back-and-forth: sharing ideas early, getting feedback often, and aligning quickly.",
-        "Yet today, that experience feels clunky. You ping a teammate who\u2019s out for coffee or wait for your manager to have time for a huddle tomorrow. What should feel like a quick nudge turns into a waiting game.",
-        "What if there was a powerful way to asynchronously share design ideas and feedback?",
-      ],
-      media: [
-        { type: "image", src: "/projects/figma/collaboration.png", alt: "Collaboration problem" },
+        "At AWS re:Invent, I hit a wall: children couldn\u2019t attend the conference. I\u2019d already been on that main stage as a speaker, but peers my age couldn\u2019t sit in the audience.",
+        "That didn\u2019t sit right. If young people were going to work in cloud and AI one day, they deserved a room where age wasn\u2019t a gatekeeper to knowledge or networking.",
       ],
     },
     {
-      id: "solution",
-      title: "Solution",
+      id: "what-we-did",
+      title: "What We Did",
       content: [
-        "Live comments pair sketch annotations with live voice recordings to create live comments that are convenient to make and easy to understand. This serves as an asynchronous way to share ideas and feedback with your team without losing momentum or context.",
-        "Easily understand ideas, no matter how big or small.",
-        "Review live comments on desktop at a glance and replay the moment for full context.",
-      ],
-      media: [
-        { type: "video", src: "/projects/figma/mobile.mp4" },
-        { type: "video", src: "/projects/figma/desktop.mp4" },
+        "I pulled together a lineup of industry experts and analysts willing to speak directly to young learners \u2014 no dumbed-down content, just accessible framing.",
+        "Sessions covered cloud fundamentals, career paths in AI, and how to get hands-on even before college. We paired talks with time for kids to ask the unfiltered questions they\u2019d never get to ask at a corporate keynote.",
       ],
     },
     {
       id: "outcome",
       title: "Outcome",
       content: [
-        "We had the chance to share our work with incredible designers in NYC!",
-        "They voted us the winner of the event and shared a lot of valuable feedback!",
+        "KidCon proved the demand I suspected was there: a generation of kids who wanted to learn the hard technical stuff, if anyone would take them seriously.",
+        "Multiple attendees went on to pursue their own AWS certifications after the event. The format \u2014 industry access without age barriers \u2014 became a blueprint I\u2019ve kept using as I build Setu Labs.",
       ],
-      media: [
-        { type: "image", src: "/projects/figma/nyc.png", alt: "NYC event" },
+    },
+    {
+      id: "reflection",
+      title: "Reflection",
+      content: [
+        "The simplest access-expanding idea in the world is: invite the people you\u2019re told are too young. Almost everything I\u2019ve built since has been a variation on that move.",
       ],
     },
   ],
 };
 
-export const rbcProject: ProjectData = {
-  title: "Patent-pending AI",
-  subtitle: "Royal Bank of Canada \u2022 Handed off 2024",
+export const awsCertProject: ProjectData = {
+  title: "Youngest AWS Cloud Practitioner in the world",
+  subtitle: "AWS \u2022 Certified 2018",
   heroMedia: {
     type: "image",
-    src: "/projects/rbc/rbc.png",
+    src: "/projects/aws-cert/hero.png",
+    alt: "AWS Cloud Practitioner at age 9",
   },
   metadata: [
-    { label: "Role", value: "Developer, unofficial product designer" },
-    { label: "Timeline", value: "May - August 2024" },
-    { label: "Team", value: "1 Business Analyst, 1 Data Engineer, 2 Engineers" },
-    { label: "Skills", value: "Product Strategy, Full Stack Engineering, Pitching & Storytelling" },
+    { label: "Achievement", value: "World Record" },
+    { label: "Age", value: "9 years old" },
+    { label: "Cert", value: "AWS Cloud Practitioner" },
+    { label: "Also", value: "AWS AI Practitioner (2024)" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "RBC Amplify is an internship program that challenges teams of 4 interns to solve a real business problem with technology, from understanding the problem space, researching, and designing, to developing, deploying, and pitching to senior leaders. My team was tasked with designing and building a generative AI solution for RBC\u2019s Global HR Advice Centre.",
-        "Note: Due to my NDA, I cannot disclose details on this project and its designs.",
-      ],
-      media: [
-        { type: "image", src: "/projects/rbc/1-rbc-overview.png", alt: "RBC overview" },
+        "At nine, I became the youngest person in the world to earn the AWS Cloud Practitioner Certification. In 2024 I went back and earned the AWS Certified AI Practitioner Certification to match where the industry \u2014 and my own work \u2014 was moving.",
       ],
     },
     {
-      id: "the-journey",
-      title: "The Journey",
+      id: "the-ask",
+      title: "The Ask",
       content: [
-        "The HR Technology and HR Advice teams came together to present us with a real problem they were facing.",
-        "We designed, built, and pitched our solution to senior leaders and executives across the bank!",
-        "We collected beta-launch data, continuously refined our pitch, and secured executive buy-in from the Head of Global Functions Technology.",
-      ],
-      media: [
-        { type: "image", src: "/projects/rbc/2-hmw.svg", alt: "How might we" },
-        { type: "image", src: "/projects/rbc/4-pitch.svg", alt: "Pitch" },
+        "The certification exam wasn\u2019t designed for a nine-year-old to take. I had to make a direct case to the CEO of Amazon Web Services that I was ready \u2014 that age shouldn\u2019t be the gate, competence should be.",
+        "Getting the yes was half the work. The other half was actually passing.",
       ],
     },
     {
-      id: "reflection",
-      title: "Reflection",
+      id: "what-came-after",
+      title: "What Came After",
       content: [
-        "Push back against stakeholders who think solution-first. Our problem statement had a solution in mind. We had to go beyond that and build a solution to solve the underlying problems even if it wasn\u2019t as \u2018cool\u2019.",
-        "How to navigate the sensitivity of various user and business needs. We had to bring value to the business, balancing: making employees feel heard, dealing with PII, managing the risk of misinformation, and working with the complexities of content ownership.",
+        "The certification opened doors that shaped everything that followed. I was invited to speak at AWS re:Invent 2018 and later delivered a keynote at the AWS Public Sector Summit in Washington, D.C., in front of a 40,000-person audience.",
+        "I was recognized by my school district, my state senator, and my district\u2019s congressman. More importantly, other kids saw a ceiling lift and started pursuing their own certifications.",
+      ],
+    },
+    {
+      id: "what-it-taught-me",
+      title: "What It Taught Me",
+      content: [
+        "Barriers to learning are often social, not technical. The exam was hard but finite; the permission to take it was the real fight.",
+        "Every project I\u2019ve built since \u2014 Kids Cloud Club, KidCon 2021, Setu Labs, the El Segundo internship program \u2014 is me handing that permission to the next kid.",
       ],
     },
   ],
 };
 
-export const pokergptProject: ProjectData = {
-  title: "The world\u2019s first AI poker coach",
-  subtitle: "PokerGPT \u2022 Shipped 2023",
+export const publicSectorKeynoteProject: ProjectData = {
+  title: "Keynote to 40,000 in Washington, D.C.",
+  subtitle: "AWS Public Sector Summit \u2022 Keynoted 2019",
   heroMedia: {
-    type: "video",
-    src: "/projects/pokergpt/pokergpt.mp4",
-    poster: "/projects/pokergpt/pokergpt.png",
+    type: "image",
+    src: "/projects/aws-keynote/hero.png",
+    alt: "AWS Public Sector Summit keynote",
   },
   metadata: [
-    { label: "Role", value: "Product Designer & Frontend Engineer" },
-    { label: "Timeline", value: "May - August 2023" },
-    { label: "Team", value: "1 PM, 2 Engineers, 1 Designer (me!)" },
-    { label: "Skills", value: "Product Design, Frontend Engineering, User Research" },
+    { label: "Role", value: "Keynote Speaker" },
+    { label: "Venue", value: "AWS Public Sector Summit, DC" },
+    { label: "Audience", value: "~40,000 including global officials" },
+    { label: "Skills", value: "Public Speaking, Storytelling" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "There is no convenient and low-cost solution to support beginner to intermediate poker players in their learning. This gap in the market for beginner-friendly, intuitive poker agents, was the starting point for PokerGPT.",
-        "PokerGPT is live and has been making waves in the Toronto poker community.",
-      ],
-      media: [
-        { type: "video", src: "/projects/pokergpt/formation.mp4" },
-        { type: "video", src: "/projects/pokergpt/chat.mp4" },
-        { type: "video", src: "/projects/pokergpt/handhistory.mp4" },
-        { type: "image", src: "/projects/pokergpt/2-outcomes.svg", alt: "Outcomes" },
+        "I was invited to deliver a keynote at the AWS Worldwide Public Sector Summit in Washington, D.C., speaking at the main keynote session in front of roughly 40,000 attendees \u2014 including government officials from around the world.",
       ],
     },
     {
-      id: "initial-observations",
-      title: "Initial Observations",
+      id: "the-message",
+      title: "The Message",
       content: [
-        "Poker solvers are hard to interpret and usually require pros, like coaches, to extract useful insights. Initial discussions with casual to semi-professional poker players and discovery led us to uncover 2 key pain points:",
-        "Key Insight: Some players are prompting ChatGPT in a way to get hand analysis, pot odds, game feedback, and playing strategies!",
-        "These pain points were not exactly surprising to us since we knew what the market looked like at that moment: crazy complex poker solvers, courses and bootcamps that are time and money-intensive, and coaches that cost an arm and a leg. However, these user insights validated our solution and unique position in the market.",
+        "I used the stage to make the same argument I\u2019d been making since I first asked to sit the AWS exam: access to knowledge and opportunity should never be limited by age, background, or circumstance.",
+        "I shared my story honestly \u2014 the rejection, the convincing, the certification, the Kids Cloud Club \u2014 and asked the room of public-sector leaders to imagine what happens when institutions start betting on young people sooner.",
       ],
     },
     {
-      id: "market-research",
-      title: "Market Research",
+      id: "what-it-unlocked",
+      title: "What It Unlocked",
       content: [
-        "Poker Solvers \u2014 Platforms like GTO Wizard, Deepsolver, and more recently, Ruse AI provide interfaces to complex mathematical models. These tools are robust but often require a solid understanding of poker theory, making them less suitable for beginners.",
-        "Courses & Bootcamps \u2014 Poker bootcamps and online courses provide structured learning but are costly and require a lot of time commitment.",
-        "Personal Coaching \u2014 One-on-one personalized coaching can be highly effective but requires a significant time and cost investment.",
-        "How might we create an intuitive, convenient, and personalized experience for building poker skills?",
-      ],
-      media: [
-        { type: "image", src: "/projects/pokergpt/3-market-position.svg", alt: "Market position" },
-      ],
-    },
-    {
-      id: "becoming-my-users",
-      title: "Becoming My Users",
-      content: [
-        "I didn\u2019t know how to play poker... so I learned!",
-        "Starting with Youtube videos, playing online, and I started to learn the basics and eventually threw in (and lost) a few hundred dollars.",
-      ],
-      media: [
-        { type: "image", src: "/projects/pokergpt/5-learning.png", alt: "Learning poker" },
-      ],
-    },
-    {
-      id: "competitor-research",
-      title: "Competitor Research",
-      content: [
-        "The current poker solvers on the market are highly complex and mathematical \u2014 great for the serious poker people, but not for those who want a way to casually learn and improve their performance.",
-      ],
-      media: [
-        { type: "image", src: "/projects/pokergpt/6-competitors.svg", alt: "Competitor analysis" },
-      ],
-    },
-    {
-      id: "design-process",
-      title: "Design Process",
-      content: [
-        "The concept of an AI chatbot for poker solving had already been validated by our initial user research, but this also led us to another problem...",
-        "How might we provide a better poker learning experience than ChatGPT?",
-        "I started by exploring a design for a more structured and visual interface tailored to poker analysis responses.",
-        "Next, our team looked into streamlining the flow of prompting with a built-in hand history template that makes it easy to copy over past games and suggested prompts to get the conversations started.",
-        "While the game simulation direction was interesting, we decided to prioritize an MVP and observe how users would use the initial open-ended chatbot product.",
-      ],
-      media: [
-        { type: "image", src: "/projects/pokergpt/8-chatgpt-interface.png", alt: "ChatGPT interface" },
-        { type: "image", src: "/projects/pokergpt/9-feature-exploration.svg", alt: "Feature exploration" },
-        { type: "image", src: "/projects/pokergpt/game-mode.svg", alt: "Game mode" },
-      ],
-    },
-    {
-      id: "final-designs",
-      title: "Final Designs",
-      content: [
-        "We prioritized a simple, familiar, and clean interface.",
-        "Our main interface is a chat with structured responses and the ability to set game formations. This offers a familiar chat-style experience with poker-tailored features.",
-      ],
-      media: [
-        { type: "image", src: "/projects/pokergpt/10-mockups.svg", alt: "Final mockups" },
-      ],
-    },
-    {
-      id: "reflection",
-      title: "Reflection",
-      content: [
-        "Keep cutting it down to the MLP. We were laser-focused on shipping a Minimum Lovable Product, and that\u2019s what allowed us to ship fast and quickly gather feedback.",
-        "User research is not enough. Observing user stories and conducting interviews is not enough. Especially for a niche market, you need to become your users to truly empathize with their needs.",
+        "The keynote led directly to KidCon 2021 and accelerated the Kids Cloud Club\u2019s reach. It also taught me how to hold a room, which has shaped every pitch I\u2019ve given since \u2014 to schools, to government partners, and to investors for Setu Labs.",
       ],
     },
   ],
 };
 
-export const onePasswordProject: ProjectData = {
-  title: "Bringing autofill to macOS",
-  subtitle: "1Password \u2022 Shipped 2025",
+export const kidsCloudClubProject: ProjectData = {
+  title: "Teaching cloud computing to my peers",
+  subtitle: "Kids Cloud Club \u2022 Founded 2020",
   heroMedia: {
-    type: "video",
-    src: "/projects/1password/1password.mp4",
-    poster: "/projects/1password/1password.png",
+    type: "image",
+    src: "/projects/kids-cloud-club/hero.png",
+    alt: "Kids Cloud Club",
   },
   metadata: [
-    { label: "Role", value: "Product Design Intern" },
-    { label: "Timeline", value: "Jan - April 2025" },
-    { label: "Team", value: "Product Manager, Engineering Manager" },
-    { label: "Skills", value: "User Research, Competitive Analysis, Prototyping" },
+    { label: "Role", value: "Founder & President" },
+    { label: "Timeline", value: "2020 \u2014 2021" },
+    { label: "Focus", value: "Cloud computing for young learners" },
+    { label: "Led to", value: "KidCon 2021" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "1Password is a password manager, where millions of users keep their life\u2019s secrets.",
-        "Logins, payment details, and sensitive personal information \u2014 these secrets that users trust to be there the moment they need it, wherever that may be: browser, iOS and Android, Windows...",
-      ],
-      media: [
-        { type: "image", src: "/projects/1password/1-overview.png", alt: "1Password overview" },
+        "I founded the Kids Cloud Club in elementary school with one goal: teach cloud computing to other kids the way no one was willing to teach it to me.",
       ],
     },
     {
-      id: "problem",
-      title: "Problem",
+      id: "what-it-looked-like",
+      title: "What It Looked Like",
       content: [
-        "Native macOS autofill is not supported on 1Password...",
-        "Users don\u2019t get the password they need on native macOS desktop apps, which means trust is broken with users. This feature was table stakes to retain trust with users.",
-        "Operating in Apple\u2019s ecosystem means dealing with the complexities and constraints of macOS, and that means doing a lot of explorations and making a lot of tradeoffs for difficult systems problems.",
-      ],
-      media: [
-        { type: "video", src: "/projects/1password/2-macos.mp4" },
+        "Meetings broke down AWS services into things a kid could actually use \u2014 S3 for hosting a static website, Lambda for a \u201cdoes this work?\u201d function, IAM for understanding why permissions matter.",
+        "I pulled in what I\u2019d learned preparing for my certification and rewrote it for an audience that was smart but impatient with corporate slides.",
       ],
     },
     {
-      id: "navigating-the-mess",
-      title: "Navigating the Mess",
+      id: "outcome",
+      title: "Outcome",
       content: [
-        "The final flows were simple, but there was a big problem hidden within.",
-        "I researched the password managers on macOS and found 3 key players to the problem.",
-        "Apple Passwords is visually dominant over 1Password for macOS. This is a problem for 1Password as a business since we want users to choose us over the competitor, but it\u2019s also a problem for users.",
-        "My mission was to bring clarity to this mess. I went into the settings of both macOS and Safari, testing every single possible combination of settings.",
-      ],
-      media: [
-        { type: "video", src: "/projects/1password/3-final-flows.mp4" },
-        { type: "image", src: "/projects/1password/4-research.png", alt: "Research" },
-        { type: "image", src: "/projects/1password/5-players.png", alt: "Key players" },
-        { type: "image", src: "/projects/1password/mac-app-problem.png", alt: "Mac app problem" },
-        { type: "image", src: "/projects/1password/safari-problem.png", alt: "Safari problem" },
-        { type: "image", src: "/projects/1password/6-exploring-chaos.png", alt: "Exploring chaos" },
-        { type: "video", src: "/projects/1password/safari-exp1.mp4" },
-        { type: "video", src: "/projects/1password/safari-exp2.mp4" },
-        { type: "image", src: "/projects/1password/safari-solution.png", alt: "Safari solution" },
-        { type: "video", src: "/projects/1password/mac-exp.mp4" },
-        { type: "video", src: "/projects/1password/macos-solution.mp4" },
-      ],
-    },
-    {
-      id: "onboarding-users",
-      title: "Onboarding Users",
-      content: [
-        "Where is the entry point to setting up macOS autofill?",
-        "The key question was now how do users discover this setting? There were many possible entry points.",
-        "Do More with 1Password \u2014 These are suggested setup steps for features like macOS autofill. This is a new addition to the system that I designed, recognizing that there are many other features that would be valuable to have suggestions for.",
-      ],
-      media: [
-        { type: "video", src: "/projects/1password/entry-points.mp4" },
-        { type: "video", src: "/projects/1password/ep-onboarding.mp4" },
-        { type: "video", src: "/projects/1password/ep-guided-setup.mp4" },
-        { type: "video", src: "/projects/1password/ep-core-product.mp4" },
-        { type: "image", src: "/projects/1password/dmw1p.png", alt: "Do More with 1Password" },
-        { type: "image", src: "/projects/1password/dmw1p-exp.png", alt: "Exploration" },
-        { type: "video", src: "/projects/1password/new-and-existing.mp4" },
-      ],
-    },
-    {
-      id: "final-flow",
-      title: "Final Flow",
-      content: [
-        "Discovering & setting up macOS autofill:",
-      ],
-      media: [
-        { type: "video", src: "/projects/1password/final-flow.mp4" },
+        "Several members went on to earn their own AWS certifications. The club became the launchpad for KidCon 2021 and for my ongoing work on Setu Labs \u2014 both directly trace back to the conversations we had in those early meetings.",
       ],
     },
     {
       id: "reflection",
       title: "Reflection",
       content: [
-        "The simplest designs hold a lot of complexity. My job as a designer is to explore the complexity and bring simplicity to users. Elegant solutions require a lot of exploration and iteration.",
-        "Flows aren\u2019t always perfect because the tech isn\u2019t always perfect. Technical constraints with API availability and conflicting applications were inevitable. The user flow couldn\u2019t be perfect, but we had to work with it.",
+        "Teaching is the fastest way to find the holes in your own understanding. Running the club taught me more cloud than the exam did, and it\u2019s still the loop I try to close on every product I build.",
       ],
     },
   ],
 };
 
-export const earthProject: ProjectData = {
-  title: "Innovation management for Fortune 500s",
-  subtitle: "Earth \u2022 Shipped 2023",
+export const infotrusterProject: ProjectData = {
+  title: "Building a startup in a summer",
+  subtitle: "Infotruster \u2022 Leangap 2024",
   heroMedia: {
-    type: "video",
-    src: "/projects/earth/earth.mp4",
-    poster: "/projects/earth/earth.png",
+    type: "image",
+    src: "/projects/infotruster/hero.png",
+    alt: "Infotruster",
   },
   metadata: [
-    { label: "Role", value: "Product Designer & Frontend Engineer" },
-    { label: "Timeline", value: "Jan - Dec 2023" },
-    { label: "Team", value: "1 PM, 2 Engineers, 1 Designer (me!)" },
-    { label: "Skills", value: "Product Design, Frontend Engineering, User Research" },
+    { label: "Role", value: "Co-founder" },
+    { label: "Program", value: "Leangap (Summer 2024)" },
+    { label: "Award", value: "Most Outstanding Company" },
+    { label: "Skills", value: "Product, Pitching, Team Building" },
   ],
   sections: [
     {
       id: "overview",
       title: "Overview",
       content: [
-        "Onova is an innovation consultancy that hosts large-scale, internal hackathons for some of the world\u2019s largest companies (like Capgemini, BMO, and McDonald\u2019s!). However, navigating the hackathon logistical ecosystem was painful.",
-        "Earth is a unified platform that allows Onova to host large-scale hybrid hackathons. From registration and team-formation, to project submission and judging, Earth supports every step of the hackathon lifecycle.",
-      ],
-      media: [
-        { type: "video", src: "/projects/earth/home-page.mp4" },
-        { type: "video", src: "/projects/earth/create-team.mp4" },
-        { type: "video", src: "/projects/earth/admin-dashboard.mp4" },
-        { type: "image", src: "/projects/earth/2-companies.png", alt: "Companies served" },
+        "Leangap is a high school entrepreneurship program where teams build and launch a real startup in a summer. My team, Infotruster, won the \u201cMost Outstanding Company\u201d Award across the cohort.",
       ],
     },
     {
-      id: "initial-findings",
-      title: "Initial Findings",
+      id: "what-we-built",
+      title: "What We Built",
       content: [
-        "The lack of cohesion between platforms used to run events made the experience confusing and frustrating.",
-        "With my stakeholders and PM, we used past survey data to identify key pain points throughout the event journey, setting a clear direction for our new product.",
-      ],
-      media: [
-        { type: "image", src: "/projects/earth/3-painpoints.svg", alt: "Pain points" },
+        "We tackled the trust gap in online information: how do you decide which sources are reliable when everyone is trying to look credible?",
+        "We shipped a working product, tested it with real users, and went through the full motion of customer discovery, iteration, and pitch \u2014 all compressed into the program window.",
       ],
     },
     {
-      id: "design-system",
-      title: "Design System",
+      id: "what-it-taught-me",
+      title: "What It Taught Me",
       content: [
-        "I built a design system to support our rapid product development.",
-        "When I came onto this project, the existing system was not built for scale. I started by working with the team to identify brand keywords, which were used to set a moodboard to guide the visual direction.",
-        "With the brand vision and considerations, I went on to develop a simple design system to streamline the development of the core product features and allow for consistency across the platform.",
+        "How to move fast with a team I\u2019d just met. How to cut scope brutally so we\u2019d actually have something to show users. How to pitch a company\u2019s story in a way that respects the audience\u2019s time.",
+        "Every one of those muscles transferred directly into Setu Labs.",
       ],
-      media: [
-        { type: "image", src: "/projects/earth/4-moodboard.svg", alt: "Moodboard" },
-        { type: "image", src: "/projects/earth/5-design-system.svg", alt: "Design system" },
+    },
+  ],
+};
+
+export const devopsClubProject: ProjectData = {
+  title: "Rebuilding a high school coding community",
+  subtitle: "Basha DevOps Club \u2022 2023\u2013Now",
+  heroMedia: {
+    type: "image",
+    src: "/projects/devops-club/hero.png",
+    alt: "Basha DevOps Club",
+  },
+  metadata: [
+    { label: "Role", value: "VP (25\u201326), prev. Secretary" },
+    { label: "School", value: "Basha High School" },
+    { label: "Anchor Event", value: "Community Day of Code" },
+    { label: "Partnered With", value: "Hack Club" },
+  ],
+  sections: [
+    {
+      id: "overview",
+      title: "Overview",
+      content: [
+        "At Basha High, the DevOps Club was oriented around competitions, not learning. I didn\u2019t want to leave that alone.",
+        "I partnered with Hack Club \u2014 a nonprofit for hands-on coding education \u2014 and built a parallel track inside the club for students who wanted to actually ship projects. What started small became a core part of the club\u2019s identity.",
       ],
     },
     {
-      id: "live-dashboard",
-      title: "Live Dashboard",
+      id: "what-i-lead",
+      title: "What I Lead",
       content: [
-        "Participants need a place that acts as the home page for their hackathon experience.",
-        "I explored new layouts and presented alternatives to the internal team. These focused on displaying the core features of the page and improving on the problems of the use of space and hierarchy.",
-        "A challenge we encountered was designing the page in a way that would allow for the most important content to be presented at the top without disrupting the flow. Our solution was a simple collapse and expand toggle.",
-      ],
-      media: [
-        { type: "image", src: "/projects/earth/6-layout.svg", alt: "Layout exploration" },
-        { type: "image", src: "/projects/earth/7-scroll-challenge.svg", alt: "Scroll challenge" },
-        { type: "video", src: "/projects/earth/8-final.mov" },
+        "As VP of DevOps (2025\u201326), I organize our Community Day of Code \u2014 coordinating volunteers and logistics to give younger students hands-on tech experiences.",
+        "As the club\u2019s elected Secretary in 2024\u201325, I helped run events like FBLA prep and weekly coding sessions that kept the community practicing.",
       ],
     },
     {
-      id: "beta-launch-testing",
-      title: "Beta Launch & Testing",
+      id: "outcome",
+      title: "Outcome",
       content: [
-        "We went live with Earth at a real student hackathon.",
-        "During the hackathon, I conducted user interviews, gathering valuable feedback to inform our next steps in Earth\u2019s development process.",
+        "What was once a competition-only room is now a place where beginners actually get to code. That shift is what earned me NHS membership and directly set up my role as NHS Blood Drive Coordinator \u2014 another quarterly, outreach-heavy program I now help run with Vitalant.",
       ],
-      media: [
-        { type: "image", src: "/projects/earth/9-beta-launch.svg", alt: "Beta launch" },
+    },
+  ],
+};
+
+export const talkingFruitsProject: ProjectData = {
+  title: "Talking fruits built with Raspberry Pi",
+  subtitle: "Kindergarten Project \u2022 Shipped early",
+  heroMedia: {
+    type: "image",
+    src: "/projects/talking-fruits/hero.png",
+    alt: "Talking Fruits project",
+  },
+  metadata: [
+    { label: "Role", value: "Builder" },
+    { label: "Hardware", value: "Raspberry Pi + capacity sensors" },
+    { label: "Goal", value: "Nutritional awareness, made fun" },
+    { label: "Also", value: "Running Club Lap Tracker (Android)" },
+  ],
+  sections: [
+    {
+      id: "overview",
+      title: "Overview",
+      content: [
+        "In kindergarten, I watched friends eat junk food at lunch and wondered how to make nutrition feel fun instead of preachy. My dad was tinkering with a Raspberry Pi, and that gave me a starting point.",
+        "The result: real fruits wired up with capacity sensors. Touch a fruit, and it \u201ctalks\u201d \u2014 telling you about itself and why eating it matters.",
       ],
     },
     {
-      id: "iterating-with-insights",
-      title: "Iterating with Insights",
+      id: "building-it",
+      title: "Building It",
       content: [
-        "Key Finding: Users are not discovering the live dashboard.",
-        "From user interviews and Google Analytics data, we found that users are not finding their way to the \u2018Live Now\u2019 dashboard page.",
-        "I identified that there was a lot of room for improvement in the overall architecture of Earth that would make navigation clearer and more intuitive.",
-        "With the new structure, page naming, and visual changes to the navigation bar, we saw a massive improvement in the discovery of the live dashboard page at our next event!",
-      ],
-      media: [
-        { type: "image", src: "/projects/earth/10-nav-problem.svg", alt: "Navigation problem" },
-        { type: "image", src: "/projects/earth/11-info-arch.svg", alt: "Information architecture" },
-        { type: "image", src: "/projects/earth/12-nav-results.svg", alt: "Navigation results" },
+        "Capacitive touch sensing on each fruit, audio triggered per fruit with its nutritional story, all orchestrated on the Pi. It was my first time gluing hardware and software into something another human could use.",
       ],
     },
     {
-      id: "the-big-launch",
-      title: "The Big Launch!",
+      id: "the-sibling-project",
+      title: "Running Club Lap Tracker",
       content: [
-        "We launched Earth at the Capgemini x Google Cloud Gen AI Hackathon 2023.",
-        "Our official launch served Capgemini and Google Cloud\u2019s partnered Gen AI Hackathon event with participation from over 1000 employees from these companies!",
-        "The success of this hackathon sparked the beginning of a long-term business relationship and recurring events for the future.",
-      ],
-      media: [
-        { type: "video", src: "/projects/earth/13-launch.mp4" },
-        { type: "image", src: "/projects/earth/14-goals.svg", alt: "Goals achieved" },
+        "Around the same chapter of my life, I heard my room mom describe how manual and painful it was to track laps for the school running club. I built an Android app that tracked laps and auto-generated reports for the school administration.",
+        "My principal called to thank me. It was the first time a product I built helped a person I wasn\u2019t related to \u2014 and I\u2019ve been chasing that feeling ever since.",
       ],
     },
     {
       id: "reflection",
       title: "Reflection",
       content: [
-        "Build fast, iterate faster. Startups don\u2019t wait for the perfect product. They build, test, and iterate. We needed to be able to build and test quickly to get feedback and improve the product.",
-        "Design and development are not separate disciplines. A lot of my time was spent developing the front-end of the product. By understanding how the product was built, I was able to make more informed design decisions and ship faster.",
+        "Start with a problem you can see from your own lunch table or classroom. The smallest local problems have taught me more about building than any textbook has.",
       ],
     },
   ],
 };
 
 export const projects: Record<string, ProjectData> = {
-  openai: openaiProject,
-  alexa: alexaProject,
-  figma: figmaProject,
-  rbc: rbcProject,
-  pokergpt: pokergptProject,
-  "1password": onePasswordProject,
-  earth: earthProject,
+  "setu-labs": setuLabsProject,
+  kidcon: kidconProject,
+  "aws-cert": awsCertProject,
+  "aws-keynote": publicSectorKeynoteProject,
+  "kids-cloud-club": kidsCloudClubProject,
+  infotruster: infotrusterProject,
+  "devops-club": devopsClubProject,
+  "talking-fruits": talkingFruitsProject,
 };

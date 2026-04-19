@@ -3,7 +3,6 @@ import { ViewTransition } from "react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Libre_Baskerville } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -65,7 +64,6 @@ export default function RootLayout({
           </div>
           <TextSelectionPopover />
         </ChatProvider>
-        <SpeedInsights />
       </body>
     </html>
   );

@@ -23,10 +23,10 @@ export default function AboutPage() {
             <div className="flex flex-col gap-3 max-w-[720px]">
               <p className="text-[15px] text-foreground-light leading-[1.5]">
                 I&apos;m Karthick Arun &mdash; an 11th grader in Chandler,
-                Arizona, and Founder &amp; CEO of Aigenie Enterprises. I come
-                from a family of engineers and entrepreneurs &mdash; both my
-                parents immigrated from South India, and I&apos;ve been building
-                since kindergarten.
+                Arizona, and Founder &amp; CEO of Setu Labs. I come from a
+                family of engineers and entrepreneurs &mdash; both my parents
+                immigrated from South India, and I&apos;ve been building since
+                kindergarten.
               </p>
 
               <p className="text-[15px] text-foreground-light leading-[1.5]">
@@ -34,9 +34,9 @@ export default function AboutPage() {
                 and later keynoted the AWS Public Sector Summit in Washington, DC
                 in front of 40,000 people. That experience inspired me to
                 organize KidCon 2021, a cloud computing conference for young
-                people. Today I&apos;m building Lucky at Aigenie &mdash; an
-                AI-powered accessibility app that helps blind and visually
-                impaired users browse the web through voice.
+                people. Today at Setu Labs I&apos;m building Lucky &mdash; an
+                AI-powered accessibility product, currently in beta at
+                lucky.setulabs.ai.
               </p>
 
               <p className="text-[15px] text-foreground-light leading-[1.5]">
@@ -49,7 +49,7 @@ export default function AboutPage() {
               <p className="text-[15px] text-foreground-light leading-[1.5]">
                 Open to collaborations &mdash; reach out on{" "}
                 <a
-                  href="https://linkedin.com/in/karthickarun"
+                  href="https://www.linkedin.com/in/karthickarun/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground underline underline-offset-4"

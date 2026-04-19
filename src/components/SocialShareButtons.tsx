@@ -8,7 +8,7 @@ interface SocialShareButtonsProps {
   slug: string;
 }
 
-const BASE_URL = "https://karthickarun.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://karthickarun.com";
 
 export default function SocialShareButtons({
   title,

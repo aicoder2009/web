@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
 
-const BASE_URL = "https://karthickarun.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://karthickarun.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllBlogPosts();

@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="flex flex-row items-end gap-3 md:gap-8 w-full md:w-fit justify-between">
           <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-3 md:gap-8">
             <a
-              href="https://linkedin.com/in/karthickarun"
+              href="https://www.linkedin.com/in/karthickarun/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:!opacity-100"

@@ -5,24 +5,58 @@ import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import RotatingText from "@/components/RotatingText";
 
+async function checkImage(src: string): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
+  });
+}
+
 const experiences = [
   {
+    year: "2025–NOW",
+    company: "Basha DevOps Club",
+    role: "Vice President",
+    url: undefined,
+  },
+  {
+    year: "2025–NOW",
+    company: "NHS + MYAC (Gilbert)",
+    role: "Blood Drive Coordinator, Youth Council",
+    url: undefined,
+  },
+  {
     year: "2022–NOW",
-    company: "Aigenie Enterprises LLC.",
-    role: "Founder & Chief Executive Officer",
-    url: "https://aigenie.biz",
+    company: "Setu Labs",
+    role: "Founder & CEO",
+    url: "https://setulabs.ai",
+  },
+  {
+    year: "2021",
+    company: "KidCon",
+    role: "Organizer & Host",
+    url: undefined,
   },
   {
     year: "2020–2021",
     company: "Kids Cloud Club",
-    role: "Chief Executive Officer",
+    role: "Founder & President",
     url: undefined,
   },
   {
     year: "2019",
-    company: "Amazon Web Services (AWS)",
-    role: "Summer Intern",
-    url: "https://aws.amazon.com",
+    company: "AWS Public Sector Summit",
+    role: "Keynote Speaker (DC, ~40k)",
+    url: undefined,
+  },
+  {
+    year: "2018",
+    company: "AWS",
+    role: "Youngest Cloud Practitioner at age 9",
+    url: undefined,
   },
 ];
 
@@ -41,93 +75,86 @@ type Project = {
 
 const projectsLeft: Project[] = [
   {
-    title: "The future of AI & hardware",
-    org: "OpenAI x Hardware",
-    status: "Concept 2025",
-    href: "/projects/openai",
-    mediaType: "video",
-    videoSrc: "/projects/openai/openai.mp4",
-    posterSrc: "/projects/openai/openai.png",
-    fallbackGradient: "from-orange-200 via-pink-200 to-purple-200",
-    tintColor: "rgba(233, 141, 52, 0.314)",
-  },
-  {
-    title: "Novel consumer AI experiences",
-    org: "Amazon Alexa+",
-    status: "Contract 2025",
-    href: "/projects/alexa",
-    mediaType: "video",
-    videoSrc: "/projects/alexa/alexa.mp4",
-    posterSrc: "/projects/alexa/alexa.png",
-    fallbackGradient: "from-sky-100 via-blue-100 to-indigo-100",
-    tintColor: "rgba(0, 20, 69, 0.314)",
-  },
-  {
-    title: "Mobile-first for Figma",
-    org: "Figma",
-    status: "Concept 2025",
-    href: "/projects/figma",
-    mediaType: "video",
-    videoSrc: "/projects/figma/figma.mp4",
-    posterSrc: "/projects/figma/figma.png",
-    fallbackGradient: "from-violet-100 via-purple-100 to-pink-100",
-    tintColor: "rgba(208, 168, 216, 0.314)",
-  },
-  {
-    title: "Patent-pending AI",
-    org: "Royal Bank of Canada",
-    status: "Handed off 2024",
-    href: "/projects/rbc",
+    title: "AI tools that remove barriers",
+    org: "Setu Labs",
+    status: "Building 2022–Now",
+    href: "/projects/setu-labs",
     mediaType: "image",
-    posterSrc: "/projects/rbc/rbc.png",
+    posterSrc: "/projects/setu-labs/hero.png",
+    fallbackGradient: "from-emerald-100 via-green-100 to-teal-100",
+    tintColor: "rgba(91, 154, 111, 0.314)",
+  },
+  {
+    title: "The first cloud conference built for kids",
+    org: "KidCon",
+    status: "Shipped 2021",
+    href: "/projects/kidcon",
+    mediaType: "image",
+    posterSrc: "/projects/kidcon/hero.png",
+    fallbackGradient: "from-sky-100 via-blue-100 to-indigo-100",
+    tintColor: "rgba(91, 141, 239, 0.314)",
+  },
+  {
+    title: "Building a startup in a summer",
+    org: "Infotruster · Leangap",
+    status: "Most Outstanding Company 2024",
+    href: "/projects/infotruster",
+    mediaType: "image",
+    posterSrc: "/projects/infotruster/hero.png",
+    fallbackGradient: "from-violet-100 via-purple-100 to-pink-100",
+    tintColor: "rgba(155, 114, 207, 0.314)",
+  },
+  {
+    title: "Teaching cloud computing to my peers",
+    org: "Kids Cloud Club",
+    status: "Founded 2020",
+    href: "/projects/kids-cloud-club",
+    mediaType: "image",
+    posterSrc: "/projects/kids-cloud-club/hero.png",
     fallbackGradient: "from-yellow-100 via-amber-100 to-orange-100",
-    tintColor: "rgb(232, 242, 251)",
+    tintColor: "rgba(232, 145, 58, 0.314)",
   },
 ];
 
 const projectsRight: Project[] = [
   {
-    title: "The world's first AI poker coach",
-    org: "PokerGPT",
-    status: "Shipped 2023",
-    href: "/projects/pokergpt",
-    mediaType: "video",
-    videoSrc: "/projects/pokergpt/pokergpt.mp4",
-    posterSrc: "/projects/pokergpt/pokergpt.png",
-    fallbackGradient: "from-green-100 via-emerald-100 to-teal-100",
-    tintColor: "rgba(221, 208, 252, 0.314)",
-  },
-  {
-    title: "Bringing autofill to macOS",
-    org: "1Password",
-    status: "Shipped 2025",
-    href: "/projects/1password",
-    mediaType: "video",
-    videoSrc: "/projects/1password/1password.mp4",
-    posterSrc: "/projects/1password/1password.png",
-    fallbackGradient: "from-blue-50 via-slate-100 to-gray-100",
-    tintColor: "rgba(26, 49, 110, 0.314)",
-  },
-  {
-    title: "Making 0-1 building for everyone",
-    org: "Hack Western 12",
-    status: "Shipped 2025",
-    href: "https://hackwestern.com",
-    external: true,
+    title: "Keynote to 40,000 in Washington, D.C.",
+    org: "AWS Public Sector Summit",
+    status: "Keynoted 2019",
+    href: "/projects/aws-keynote",
     mediaType: "image",
-    posterSrc: "/hackwestern.png",
-    fallbackGradient: "from-blue-100 via-indigo-100 to-violet-100",
-    tintColor: "rgb(26, 26, 26)",
+    posterSrc: "/projects/aws-keynote/hero.png",
+    fallbackGradient: "from-orange-200 via-amber-200 to-yellow-200",
+    tintColor: "rgba(255, 153, 0, 0.314)",
   },
   {
-    title: "Innovation management for Fortune 500s",
-    org: "Earth",
-    status: "Shipped 2023",
-    href: "/projects/earth",
-    mediaType: "video",
-    videoSrc: "/projects/earth/earth.mp4",
-    posterSrc: "/projects/earth/earth.png",
-    fallbackGradient: "from-emerald-100 via-green-100 to-lime-100",
+    title: "Youngest AWS Cloud Practitioner in the world",
+    org: "AWS Certification",
+    status: "Certified at age 9 · 2018",
+    href: "/projects/aws-cert",
+    mediaType: "image",
+    posterSrc: "/projects/aws-cert/hero.png",
+    fallbackGradient: "from-blue-50 via-slate-100 to-gray-100",
+    tintColor: "rgba(0, 20, 69, 0.314)",
+  },
+  {
+    title: "Rebuilding a high school coding community",
+    org: "Basha DevOps Club",
+    status: "VP · 2023–Now",
+    href: "/projects/devops-club",
+    mediaType: "image",
+    posterSrc: "/projects/devops-club/hero.png",
+    fallbackGradient: "from-rose-100 via-pink-100 to-red-100",
+    tintColor: "rgba(217, 91, 140, 0.314)",
+  },
+  {
+    title: "Talking fruits built with Raspberry Pi",
+    org: "Kindergarten Build",
+    status: "Shipped early",
+    href: "/projects/talking-fruits",
+    mediaType: "image",
+    posterSrc: "/projects/talking-fruits/hero.png",
+    fallbackGradient: "from-lime-100 via-emerald-100 to-green-100",
     tintColor: "rgba(122, 174, 233, 0.314)",
   },
 ];
@@ -135,6 +162,18 @@ const projectsRight: Project[] = [
 function ProjectCard({ project }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [imageOk, setImageOk] = useState(false);
+
+  useEffect(() => {
+    if (project.mediaType !== "image") return;
+    let active = true;
+    checkImage(project.posterSrc).then((ok) => {
+      if (active) setImageOk(ok);
+    });
+    return () => {
+      active = false;
+    };
+  }, [project.mediaType, project.posterSrc]);
 
   useEffect(() => {
     if (project.mediaType !== "video") return;
@@ -190,7 +229,7 @@ function ProjectCard({ project }: { project: Project }) {
             >
               {isVisible && <source src={project.videoSrc} type="video/mp4" />}
             </video>
-          ) : (
+          ) : imageOk ? (
             <Image
               src={project.posterSrc}
               alt={project.title}
@@ -198,6 +237,12 @@ function ProjectCard({ project }: { project: Project }) {
               className="relative object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 900px"
             />
+          ) : (
+            <div className="relative w-full h-full flex items-center justify-center">
+              <span className="text-3xl md:text-4xl font-light text-foreground/15 font-serif transition-all duration-300 group-hover:text-foreground/30 px-6 text-center">
+                {project.org}
+              </span>
+            </div>
           )}
           {/* Colored tint overlay (per-project) */}
           <div
