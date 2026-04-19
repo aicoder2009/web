@@ -240,56 +240,45 @@ export async function POST(req: Request) {
 
     const readable = new ReadableStream({
       async start(controller) {
+        let clientClosed = false;
+        const send = (payload: unknown) => {
+          if (clientClosed) return;
+          try {
+            controller.enqueue(
+              encoder.encode(`data: ${JSON.stringify(payload)}\n\n`)
+            );
+          } catch {
+            clientClosed = true;
+          }
+        };
         try {
           for await (const event of stream) {
+            if (clientClosed) break;
             if (
               event.type === "response.created" &&
               event.response?.id
             ) {
-              // Send response ID so frontend can chain follow-ups
-              controller.enqueue(
-                encoder.encode(
-                  `data: ${JSON.stringify({
-                    responseId: event.response.id,
-                    done: false,
-                  })}\n\n`
-                )
-              );
+              send({ responseId: event.response.id, done: false });
             } else if (event.type === "response.output_text.delta") {
-              controller.enqueue(
-                encoder.encode(
-                  `data: ${JSON.stringify({
-                    content: event.delta,
-                    done: false,
-                  })}\n\n`
-                )
-              );
+              send({ content: event.delta, done: false });
             } else if (event.type === "response.completed") {
-              controller.enqueue(
-                encoder.encode(
-                  `data: ${JSON.stringify({
-                    content: "",
-                    done: true,
-                    images: [],
-                  })}\n\n`
-                )
-              );
+              send({ content: "", done: true, images: [] });
             }
           }
-          controller.close();
-        } catch {
-          controller.enqueue(
-            encoder.encode(
-              `data: ${JSON.stringify({
-                content:
-                  "Sorry, I'm having trouble connecting right now. Please try again later!",
-                done: true,
-                images: [],
-              })}\n\n`
-            )
-          );
-          controller.close();
+          if (!clientClosed) controller.close();
+        } catch (err) {
+          console.error("[/api/chat] stream error:", err);
+          send({
+            content:
+              "Sorry, I'm having trouble connecting right now. Please try again later!",
+            done: true,
+            images: [],
+          });
+          if (!clientClosed) controller.close();
         }
+      },
+      cancel() {
+        // Client disconnected; loop will detect closed controller and exit.
       },
     });
 
@@ -300,7 +289,8 @@ export async function POST(req: Request) {
         Connection: "keep-alive",
       },
     });
-  } catch {
+  } catch (err) {
+    console.error("[/api/chat] fatal error:", err);
     return new Response(
       JSON.stringify({ error: "Failed to process chat request" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
