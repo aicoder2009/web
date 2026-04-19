@@ -134,6 +134,24 @@ Sure — which one works best?
 
 Only use this pattern when the user is asking how to reach Karthick. If they click one of the buttons, you'll get a follow-up message like "contact: work" and should respond with just that specific email on its own line, e.g. "**Work email:** karthick@setulabs.ai" (never include the aigenie.biz addresses — they are deprecated).
 
+## Code Interpreter Usage
+You have access to a Python \`code_interpreter\` tool. Use it ONLY when the user explicitly asks for a chart, graph, visualization, timeline, or breakdown that is best answered visually — for example:
+- "Show me a chart of Karthick's volunteering hours"
+- "Graph his certifications over time"
+- "Visualize his projects by language"
+- "Timeline of key milestones"
+
+Do NOT use the code_interpreter for:
+- General text responses, math you can do mentally, counting items you already know, or code demos.
+- Any topic outside Karthick's portfolio.
+
+When you do generate a chart:
+1. Use matplotlib with a clean style (e.g. \`plt.style.use('seaborn-v0_8-whitegrid')\` or default), simple colors, readable labels.
+2. Save as PNG to \`/mnt/data/chart.png\` (or similar). The frontend will display the generated image automatically.
+3. Keep a single chart per response.
+4. After generating, write 1-2 sentences describing what the chart shows.
+5. Only chart data that is actually in Karthick's profile (volunteering roles, certifications, project count, timeline years). Don't fabricate numbers.
+
 ## Guidelines
 - Respond ONLY with information relevant to Karthick's professional experience, achievements, interests, or portfolio.
 - For questions about specific projects or experiences, give detailed, contextual information as if you are the owner/creator.
@@ -272,6 +290,34 @@ export async function POST(req: Request) {
             clientClosed = true;
           }
         };
+
+        const seenFiles = new Set<string>();
+        const fetchChartImage = async (
+          containerId: string,
+          fileId: string,
+          filename?: string
+        ) => {
+          if (seenFiles.has(fileId)) return;
+          seenFiles.add(fileId);
+          try {
+            const res = await openai.containers.files.content.retrieve(fileId, {
+              container_id: containerId,
+            });
+            const buf = Buffer.from(await res.arrayBuffer());
+            const ext = (filename?.split(".").pop() || "png").toLowerCase();
+            const mime =
+              ext === "jpg" || ext === "jpeg"
+                ? "image/jpeg"
+                : ext === "svg"
+                  ? "image/svg+xml"
+                  : "image/png";
+            const dataUrl = `data:${mime};base64,${buf.toString("base64")}`;
+            send({ image: dataUrl, done: false });
+          } catch (err) {
+            console.error("[/api/chat] chart fetch failed:", err);
+          }
+        };
+
         try {
           for await (const event of stream) {
             if (clientClosed) break;
@@ -282,8 +328,31 @@ export async function POST(req: Request) {
               send({ responseId: event.response.id, done: false });
             } else if (event.type === "response.output_text.delta") {
               send({ content: event.delta, done: false });
+            } else if (
+              event.type === "response.output_text.annotation.added"
+            ) {
+              const ann = event.annotation as
+                | {
+                    type?: string;
+                    container_id?: string;
+                    file_id?: string;
+                    filename?: string;
+                  }
+                | null;
+              if (
+                ann &&
+                ann.type === "container_file_citation" &&
+                ann.container_id &&
+                ann.file_id
+              ) {
+                await fetchChartImage(
+                  ann.container_id,
+                  ann.file_id,
+                  ann.filename
+                );
+              }
             } else if (event.type === "response.completed") {
-              send({ content: "", done: true, images: [] });
+              send({ content: "", done: true });
             }
           }
           if (!clientClosed) controller.close();
@@ -293,7 +362,6 @@ export async function POST(req: Request) {
             content:
               "Sorry, I'm having trouble connecting right now. Please try again later!",
             done: true,
-            images: [],
           });
           if (!clientClosed) controller.close();
         }

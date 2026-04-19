@@ -22,6 +22,7 @@ interface ChatMessageProps {
   onSuggestionClick?: (suggestion: string) => void;
   onFeedback?: (type: "up" | "down" | null) => void;
   isStreaming?: boolean;
+  images?: string[];
 }
 
 // MUI SubdirectoryArrowRight icon — matches source
@@ -88,6 +89,7 @@ export default function ChatMessage({
   onSuggestionClick,
   onFeedback,
   isStreaming,
+  images,
 }: ChatMessageProps) {
   if (role === "user") {
     return <UserMessage content={content} quotedText={quotedText} />;
@@ -144,6 +146,19 @@ export default function ChatMessage({
           </ReactMarkdown>
           {isStreaming && <span className="streaming-cursor" />}
         </div>
+        {images && images.length > 0 && (
+          <div className="flex flex-col gap-2 -mt-2 mb-2">
+            {images.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={i}
+                src={src}
+                alt="ArunLM generated chart"
+                className="arunlm-chart rounded-md border border-foreground/10 max-w-full h-auto"
+              />
+            ))}
+          </div>
+        )}
         {!isStreaming && content && (
           <div className="flex items-center gap-0.5 -mt-2 mb-1 opacity-0 group-hover/msg:opacity-100 max-md:opacity-100 transition-opacity duration-200">
             <button

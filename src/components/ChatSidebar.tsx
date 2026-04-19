@@ -33,6 +33,7 @@ interface Message {
   content: string;
   quotedText?: string;
   feedback?: "up" | "down" | null;
+  images?: string[];
 }
 
 // MUI SubdirectoryArrowRight icon — matches source
@@ -173,6 +174,7 @@ export default function ChatSidebar() {
 
         const decoder = new TextDecoder();
         let assistantContent = "";
+        let assistantImages: string[] = [];
         let buffer = "";
 
         setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
@@ -194,6 +196,17 @@ export default function ChatSidebar() {
               // Capture responseId from first event
               if (parsed.responseId && !parsed.content) {
                 setResponseId(parsed.responseId);
+              } else if (parsed.image) {
+                assistantImages = [...assistantImages, parsed.image];
+                setMessages((prev) => {
+                  const updated = [...prev];
+                  updated[updated.length - 1] = {
+                    role: "assistant",
+                    content: assistantContent,
+                    images: assistantImages,
+                  };
+                  return updated;
+                });
               } else if (parsed.done) {
                 // Stream complete
               } else if (parsed.content) {
@@ -203,6 +216,9 @@ export default function ChatSidebar() {
                   updated[updated.length - 1] = {
                     role: "assistant",
                     content: assistantContent,
+                    images: assistantImages.length
+                      ? assistantImages
+                      : undefined,
                   };
                   return updated;
                 });
@@ -545,6 +561,7 @@ function SidebarContent({
                 key={i}
                 role={msg.role}
                 content={msg.content}
+                images={msg.images}
                 quotedText={msg.quotedText}
                 isStreaming={
                   isStreaming && i === messages.length - 1 && msg.role === "assistant" && msg.content.length > 0
